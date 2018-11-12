@@ -35,7 +35,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="BtnUserManager">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -48,7 +48,7 @@
       <string>用户管理</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="BtnBookManager">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -61,7 +61,7 @@
       <string>图书管理</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="BtnPressManager">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -74,7 +74,7 @@
       <string>出版社管理</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="BtnBorrow">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -87,7 +87,7 @@
       <string>借书</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_6">
+    <widget class="QPushButton" name="BtnReturn">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -100,7 +100,7 @@
       <string>还书</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="BtnRecordManager">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -129,36 +129,6 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QListView" name="listView">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>256</width>
-       <height>192</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="listWidget">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>240</y>
-       <width>256</width>
-       <height>161</height>
-      </rect>
-     </property>
-     <item>
-      <property name="text">
-       <string>username</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>pwd</string>
-      </property>
-     </item>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
