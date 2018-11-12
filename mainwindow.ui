@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>769</width>
-    <height>430</height>
+    <width>1072</width>
+    <height>631</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
-      <width>181</width>
-      <height>371</height>
+      <y>90</y>
+      <width>211</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -44,8 +44,8 @@
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>151</width>
-       <height>351</height>
+       <width>171</width>
+       <height>501</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -121,10 +121,10 @@
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>60</y>
-      <width>591</width>
-      <height>371</height>
+      <x>210</x>
+      <y>90</y>
+      <width>861</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -142,8 +142,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>771</width>
-      <height>61</height>
+      <width>1071</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -158,8 +158,8 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>0</y>
+       <x>350</x>
+       <y>20</y>
        <width>311</width>
        <height>51</height>
       </rect>
