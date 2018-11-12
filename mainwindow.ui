@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>408</height>
+    <width>769</width>
+    <height>476</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-20</y>
+      <y>60</y>
       <width>181</width>
-      <height>391</height>
+      <height>371</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -39,96 +39,96 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="BtnUserManager">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>30</y>
-       <width>89</width>
-       <height>25</height>
+       <x>20</x>
+       <y>10</y>
+       <width>151</width>
+       <height>351</height>
       </rect>
      </property>
-     <property name="text">
-      <string>用户管理</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BtnBookManager">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>90</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>图书管理</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BtnPressManager">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>140</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>出版社管理</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BtnBorrow">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>200</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>借书</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BtnReturn">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>250</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>还书</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BtnRecordManager">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>310</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>记录管理</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="BtnBookManager">
+        <property name="text">
+         <string>    图书管理    </string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/图书管理.png</normaloff>:/pictures/icons/Pictures/图书管理.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="BtnPressManager">
+        <property name="text">
+         <string>    出版社管理</string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/出版社管理.png</normaloff>:/pictures/icons/Pictures/出版社管理.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="BtnUserManager">
+        <property name="text">
+         <string>    用户管理    </string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/用户管理.png</normaloff>:/pictures/icons/Pictures/用户管理.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="BtnRecordManager">
+        <property name="text">
+         <string>     记录管理   </string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/记录管理.png</normaloff>:/pictures/icons/Pictures/记录管理.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="BtnBorrow">
+        <property name="text">
+         <string>          借书       </string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/借书.png</normaloff>:/pictures/icons/Pictures/借书.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="BtnReturn">
+        <property name="text">
+         <string>          还书        </string>
+        </property>
+        <property name="icon">
+         <iconset resource="mainviewbg.qrc">
+          <normaloff>:/pictures/icons/Pictures/还书.png</normaloff>:/pictures/icons/Pictures/还书.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>0</y>
+      <y>60</y>
       <width>591</width>
       <height>371</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/new/prefix1/LibraryPicture);</string>
+     <string notr="true">image: url(:/pictures/Background/Pictures/图书馆2.png);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -137,13 +137,50 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>771</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(199, 255, 236);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>0</y>
+       <width>311</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>39</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>图书管理系统</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>768</width>
+     <width>769</width>
      <height>28</height>
     </rect>
    </property>
@@ -161,6 +198,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="mainviewbg.qrc"/>
+ </resources>
  <connections/>
 </ui>

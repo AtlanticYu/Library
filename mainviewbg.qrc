@@ -1,5 +1,13 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
-        <file alias="LibraryPicture">图书馆2.png</file>
+    <qresource prefix="/pictures/icons">
+        <file>Pictures/用户管理.png</file>
+        <file>Pictures/图书管理.png</file>
+        <file>Pictures/借书.png</file>
+        <file>Pictures/记录管理.png</file>
+        <file>Pictures/还书.png</file>
+        <file>Pictures/出版社管理.png</file>
+    </qresource>
+    <qresource prefix="/pictures/Background">
+        <file>Pictures/图书馆2.png</file>
     </qresource>
 </RCC>
