@@ -26,13 +26,21 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    pressmanagerdialog.cpp \
+    onepressdialog.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    pressmanagerdialog.h \
+    onepressdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    pressmanagerdialog.ui \
+    onepressdialog.ui
+
+LIBS += -lsqlite3
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
