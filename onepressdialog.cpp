@@ -23,3 +23,8 @@ void OnePressDialog::on_BtnCommit_clicked()
     //给上一层发送信号
     emit SendPress(ui->EdtPressName->text(),ui->EdtPressAddress->text());
 }
+
+void OnePressDialog::GetClickedPress(QString,QString)
+{
+
+}

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <onepressdialog.h>
+#include <modifypressdialog.h>
 
 namespace Ui {
 class PressManagerDialog;
@@ -29,9 +30,15 @@ private slots:
 
     void GetPress(QString,QString);
 
+    void ReceiveRefleshSignal();
+
+signals:
+    void SendClickedPress(QString,QString,QString);
+
 private:
     Ui::PressManagerDialog *ui;
     OnePressDialog *OnePressDlg;
+    ModifyPressDialog *ModifyDlg;
 };
 
 #endif // PRESSMANAGERDIALOG_H

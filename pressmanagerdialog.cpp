@@ -1,6 +1,5 @@
 #include "pressmanagerdialog.h"
 #include "ui_pressmanagerdialog.h"
-#include "onepressdialog.h"
 #include "QMessageBox"
 #include "sqlite3.h"
 
@@ -10,6 +9,7 @@ PressManagerDialog::PressManagerDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     OnePressDlg = NULL;
+    ModifyDlg = NULL;
 }
 
 PressManagerDialog::~PressManagerDialog()
@@ -19,13 +19,21 @@ PressManagerDialog::~PressManagerDialog()
 
 void PressManagerDialog::on_BtnPressModify_clicked()
 {
-    if(OnePressDlg==NULL) {
-        OnePressDlg = new OnePressDialog(this);
-        OnePressDlg->setModal(false);
-//        connect(OnePressDlg,SIGNAL(AddPress(QString,QString)),this,SLOT(AddPress(QString,QString)));
+    if(ModifyDlg==NULL) {
+        ModifyDlg = new ModifyPressDialog(this);
+        ModifyDlg->setModal(false);
+        // connect()函数来将某个对象的信号与另外一个对象的槽函数相关联，这样当发射者发射信号时，接收者的槽函数将被调用(发送者，信号，接收者，槽)
+        connect(this,SIGNAL(SendClickedPress(QString,QString,QString)),ModifyDlg,SLOT(GetBeforePress(QString,QString,QString)));
+        connect(ModifyDlg,SIGNAL(NotifyRefleshPressTable()),this,SLOT(ReceiveRefleshSignal()));
     }
-    OnePressDlg->show();
+    int CurrentRow = ui->tableWidgetPress->currentRow();
+    if (CurrentRow >= 0)
+    {
+        emit SendClickedPress(ui->tableWidgetPress->item(CurrentRow,0)->text(),ui->tableWidgetPress->item(CurrentRow,1)->text(),ui->tableWidgetPress->item(CurrentRow,2)->text());
+    }
+    ModifyDlg->show();
 }
+
 
 //根据用户所点击的一条数据来进行删除
 void PressManagerDialog::on_BtnPressDelete_clicked()
@@ -80,6 +88,11 @@ void PressManagerDialog::GetPress(QString press_name,QString press_address)
 
 //窗口显示前加载所有出版社信息
 void PressManagerDialog::showEvent(QShowEvent * event)
+{
+    showAllPress();
+}
+
+void PressManagerDialog::ReceiveRefleshSignal()
 {
     showAllPress();
 }

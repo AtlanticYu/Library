@@ -20,6 +20,8 @@ private slots:
 
     void on_BtnCommit_clicked();
 
+    void GetClickedPress(QString,QString);
+
 private:
     Ui::OnePressDialog *ui;
 signals:

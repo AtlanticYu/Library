@@ -31,7 +31,8 @@ SOURCES += \
     onepressdialog.cpp \
     recorddialog.cpp \
     userdialog.cpp \
-    userupdatedialog.cpp
+    userupdatedialog.cpp \
+    modifypressdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     onepressdialog.h \
     recorddialog.h \
     userdialog.h \
-    userupdatedialog.h
+    userupdatedialog.h \
+    modifypressdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -47,7 +49,8 @@ FORMS += \
     onepressdialog.ui \
     recorddialog.ui \
     userdialog.ui \
-    userupdatedialog.ui
+    userupdatedialog.ui \
+    modifypressdialog.ui
 
 LIBS += -lsqlite3
 
