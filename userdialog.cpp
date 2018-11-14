@@ -13,9 +13,10 @@ UserDialog::~UserDialog()
     delete ui;
 }
 
-/*
+
 void UserDialog::on_pushButton_AddUser_clicked()
 {
+/*
     //连接数据库
      QSqlDatabase db;
      if (QSqlDatabase::contains("myconn"))
@@ -52,9 +53,8 @@ void UserDialog::on_pushButton_AddUser_clicked()
         }
        db.close();
        QSqlDatabase::removeDatabase("QSQLITE");
-
-}
 */
+}
 
 void UserDialog::on_pushButton_ShowAll_clicked()
 {
