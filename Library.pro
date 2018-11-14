@@ -27,15 +27,35 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    borrowbookdlg.cpp
+        borrowbookdlg.cpp \
+        pressmanagerdialog.cpp \
+        onepressdialog.cpp \
+        recorddialog.cpp \
+        userdialog.cpp \
+        userupdatedialog.cpp \
+        modifypressdialog.cpp
+    
 
 HEADERS += \
         mainwindow.h \
-    borrowbookdlg.h
+    borrowbookdlg.h \
+    pressmanagerdialog.h \
+    onepressdialog.h \
+    recorddialog.h \
+    userdialog.h \
+    userupdatedialog.h \
+    modifypressdialog.h
 
 FORMS += \
         mainwindow.ui \
-    borrowbookdlg.ui
+    borrowbookdlg.ui \
+    pressmanagerdialog.ui \
+    onepressdialog.ui \
+    recorddialog.ui \
+    userdialog.ui \
+    userupdatedialog.ui \
+    modifypressdialog.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
