@@ -13,3 +13,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 //wu
+
+void MainWindow::on_BtnBorrow_clicked()
+{
+    BkrDlg=new BorrowBookDlg(this);
+    BkrDlg->show();
+}
