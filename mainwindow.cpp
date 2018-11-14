@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    pRecordDlg=NULL;
+    pUserDlg=NULL;
 }
 //yu
 MainWindow::~MainWindow()
@@ -20,4 +22,22 @@ void MainWindow::on_BtnPressManager_clicked()
     PressManagerDialog PressDlg(this);
     PressDlg.setModal(true);
     PressDlg.exec();
+}
+void MainWindow::on_BtnRecordManager_clicked()
+{
+    if(pRecordDlg==NULL) {
+        pRecordDlg = new RecordDialog(this);
+        pRecordDlg->setModal(false);
+    }
+    pRecordDlg->show();
+}
+
+void MainWindow::on_BtnUserManager_clicked()
+{
+    if(pUserDlg==NULL) {
+        pUserDlg = new UserDialog(this);
+        pUserDlg->setModal(false);
+    }
+    pUserDlg->show();
+
 }

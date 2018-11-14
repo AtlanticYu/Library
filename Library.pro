@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,20 +27,31 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+
     pressmanagerdialog.cpp \
-    onepressdialog.cpp
+    onepressdialog.cpp \
+    recorddialog.cpp \
+    userdialog.cpp \
+    userupdatedialog.cpp
 
 HEADERS += \
         mainwindow.h \
     pressmanagerdialog.h \
-    onepressdialog.h
+    onepressdialog.h \
+    recorddialog.h \
+    userdialog.h \
+    userupdatedialog.h
 
 FORMS += \
         mainwindow.ui \
     pressmanagerdialog.ui \
-    onepressdialog.ui
+    onepressdialog.ui \
+    recorddialog.ui \
+    userdialog.ui \
+    userupdatedialog.ui
 
 LIBS += -lsqlite3
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
