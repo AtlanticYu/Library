@@ -27,7 +27,7 @@ private slots:
 
     void on_BtnAddPress_clicked();
 
-    void AddPress(QString,QString);
+    void GetPress(QString,QString);
 
 private:
     Ui::PressManagerDialog *ui;

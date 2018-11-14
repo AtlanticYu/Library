@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::OnePressDialog *ui;
 signals:
-    void AddPress(QString,QString);
+    void SendPress(QString,QString);
 };
 
 #endif // ONEPRESSDIALOG_H

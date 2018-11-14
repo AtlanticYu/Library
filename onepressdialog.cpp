@@ -21,5 +21,5 @@ void OnePressDialog::on_BtnClose_clicked()
 void OnePressDialog::on_BtnCommit_clicked()
 {
     //给上一层发送信号
-    emit AddPress(ui->EdtPressName->text(),ui->EdtPressAddress->text());
+    emit SendPress(ui->EdtPressName->text(),ui->EdtPressAddress->text());
 }

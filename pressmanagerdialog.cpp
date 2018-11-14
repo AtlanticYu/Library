@@ -19,7 +19,12 @@ PressManagerDialog::~PressManagerDialog()
 
 void PressManagerDialog::on_BtnPressModify_clicked()
 {
-
+    if(OnePressDlg==NULL) {
+        OnePressDlg = new OnePressDialog(this);
+        OnePressDlg->setModal(false);
+//        connect(OnePressDlg,SIGNAL(AddPress(QString,QString)),this,SLOT(AddPress(QString,QString)));
+    }
+    OnePressDlg->show();
 }
 
 //根据用户所点击的一条数据来进行删除
@@ -49,12 +54,12 @@ void PressManagerDialog::on_BtnAddPress_clicked()
     if(OnePressDlg==NULL) {
         OnePressDlg = new OnePressDialog(this);
         OnePressDlg->setModal(false);
-        connect(OnePressDlg,SIGNAL(AddPress(QString,QString)),this,SLOT(AddPress(QString,QString)));
+        connect(OnePressDlg,SIGNAL(SendPress(QString,QString)),this,SLOT(GetPress(QString,QString)));
     }
     OnePressDlg->show();
 }
 
-void PressManagerDialog::AddPress(QString press_name,QString press_address)
+void PressManagerDialog::GetPress(QString press_name,QString press_address)
 {
     //判断是否为空
     if(press_name ==NULL||press_address == NULL)
