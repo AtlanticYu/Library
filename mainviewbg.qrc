@@ -6,6 +6,8 @@
         <file>Pictures/记录管理.png</file>
         <file>Pictures/还书.png</file>
         <file>Pictures/出版社管理.png</file>
+        <file>Pictures/主页 Two.png</file>
+        <file>Pictures/主页 One.png</file>
     </qresource>
     <qresource prefix="/pictures/Background">
         <file>Pictures/图书馆2.png</file>

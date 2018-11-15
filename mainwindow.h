@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include"recorddialog.h"
 #include"userdialog.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +23,8 @@ private slots:
     void on_BtnRecordManager_clicked();
 
     void on_BtnUserManager_clicked();
+
+    void on_BtnBookManager_clicked();
 
 private:
     Ui::MainWindow *ui;

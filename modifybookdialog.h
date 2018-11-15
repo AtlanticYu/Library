@@ -15,8 +15,19 @@ public:
     explicit ModifyBookDialog(QWidget *parent = nullptr);
     ~ModifyBookDialog();
 
+private slots:
+    void on_BtnCancel_clicked();
+
+    void on_BtnConfirmBook_clicked();
+
+    void GetBeforeBook(QString,QString,QString,QString,QString);
+
 private:
     Ui::ModifyBookDialog *ui;
+    QString NeedModifyBookId;
+
+signals:
+    void NotifyRefleshBookTable();
 };
 
 #endif // MODIFYBOOKDIALOG_H

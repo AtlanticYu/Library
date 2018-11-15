@@ -32,7 +32,10 @@ SOURCES += \
     recorddialog.cpp \
     userdialog.cpp \
     userupdatedialog.cpp \
-    modifypressdialog.cpp
+    modifypressdialog.cpp \
+    bookmanagerdialog.cpp \
+    modifybookdialog.cpp \
+    onebookdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +44,10 @@ HEADERS += \
     recorddialog.h \
     userdialog.h \
     userupdatedialog.h \
-    modifypressdialog.h
+    modifypressdialog.h \
+    bookmanagerdialog.h \
+    modifybookdialog.h \
+    onebookdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -50,7 +56,10 @@ FORMS += \
     recorddialog.ui \
     userdialog.ui \
     userupdatedialog.ui \
-    modifypressdialog.ui
+    modifypressdialog.ui \
+    bookmanagerdialog.ui \
+    modifybookdialog.ui \
+    onebookdialog.ui
 
 LIBS += -lsqlite3
 
