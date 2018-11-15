@@ -35,10 +35,13 @@ SOURCES += \
     modifypressdialog.cpp \
     bookmanagerdialog.cpp \
     modifybookdialog.cpp \
+    borrowbookdlg.cpp \
     onebookdialog.cpp
+
 
 HEADERS += \
         mainwindow.h \
+    borrowbookdlg.h \
     pressmanagerdialog.h \
     onepressdialog.h \
     recorddialog.h \
@@ -51,6 +54,7 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui \
+    borrowbookdlg.ui \
     pressmanagerdialog.ui \
     onepressdialog.ui \
     recorddialog.ui \
@@ -61,7 +65,6 @@ FORMS += \
     modifybookdialog.ui \
     onebookdialog.ui
 
-LIBS += -lsqlite3
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -70,3 +73,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     mainviewbg.qrc
+LIBS += -lsqlite3

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "borrowbookdlg.h"
 #include"recorddialog.h"
 #include"userdialog.h"
 
@@ -18,6 +19,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_BtnBorrow_clicked();
+
     void on_BtnPressManager_clicked();
     
     void on_BtnRecordManager_clicked();
@@ -28,6 +31,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    BorrowBookDlg *BkrDlg;
     RecordDialog *pRecordDlg;
     UserDialog *pUserDlg;
 };

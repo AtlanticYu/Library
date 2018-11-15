@@ -18,6 +18,11 @@ MainWindow::~MainWindow()
 }
 //wu
 
+void MainWindow::on_BtnBorrow_clicked()
+{
+    BkrDlg=new BorrowBookDlg(this);
+    BkrDlg->show();
+}
 void MainWindow::on_BtnPressManager_clicked()
 {
     PressManagerDialog PressDlg(this);
