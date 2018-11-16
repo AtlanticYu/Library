@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT+= printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,19 +30,24 @@ SOURCES += \
         mainwindow.cpp \
     recorddialog.cpp \
     userdialog.cpp \
-    userupdatedialog.cpp
+    userupdatedialog.cpp \
+    dbManager.cpp \
+    printviewdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     recorddialog.h \
     userdialog.h \
-    userupdatedialog.h
+    userupdatedialog.h \
+    dbManager.h \
+    printviewdialog.h
 
 FORMS += \
         mainwindow.ui \
     recorddialog.ui \
     userdialog.ui \
-    userupdatedialog.ui
+    userupdatedialog.ui \
+    printviewdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

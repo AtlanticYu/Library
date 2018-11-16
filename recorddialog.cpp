@@ -1,12 +1,15 @@
 #include "recorddialog.h"
 #include "ui_recorddialog.h"
 
+
+
 RecordDialog::RecordDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RecordDialog)
 {
     ui->setupUi(this);
     mymodel=0;
+    myOperationgStyle=0;//all
 }
 
 RecordDialog::~RecordDialog()
@@ -31,7 +34,6 @@ void RecordDialog::on_pushButton_UserId_clicked()
            db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
        }
        db.setDatabaseName("./MyLibrary.db");
-
        //连接失败
        if (!db.open())
        {
@@ -53,6 +55,7 @@ void RecordDialog::on_pushButton_UserId_clicked()
           }
           else
           {
+              myOperationgStyle=1;
               model->setQuery(sql,db);
               model->removeColumn(0);//不显示记录ID列
               model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
@@ -111,6 +114,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
           }
           else
           {
+              myOperationgStyle=2;
               model->setQuery(sql,db);
               model->removeColumn(0);//不显示记录ID列
               model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
@@ -167,6 +171,7 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
        }
        else
        {
+           myOperationgStyle=0;
            model->setQuery(sql,db);
            model->removeColumn(0);//不显示记录ID列
            model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
@@ -233,4 +238,103 @@ int RecordDialog::getStatus()
 
     if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() && ui->checkBox_fine->isChecked())
         return 7;
+}
+
+void RecordDialog::on_pushButton_ShowPdf_clicked()
+{
+    if(mymodel==0)
+    {
+        QMessageBox::information(this,"错误","表格记录为空，查看预览失败.");
+        return;
+    }
+    if(ui->tableView_record->model()->rowCount()==0)
+    {
+        QMessageBox::information(this,"错误","表格记录为空，查看预览失败.");
+        return;
+    }
+    int column = model->columnCount(); //获得列数
+    int row = model->rowCount();    // 获得行数
+    QString myHtml;
+    if(0==myOperationgStyle)//all
+        myHtml="<h1 style=text-align:center>全部借阅记录如下：</h1>";
+    else
+    {
+        //连接数据库
+        QSqlDatabase db;
+        if (QSqlDatabase::contains("myconn"))
+        {
+           db = QSqlDatabase::database("myconn");
+        }
+        else
+        {
+           db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
+        }
+        db.setDatabaseName("./MyLibrary.db");
+        //连接失败
+        if (!db.open())
+        {
+            QMessageBox::information(this,"失败","连接数据库失败.");
+            return;
+        }
+
+       if(1==myOperationgStyle)//user
+       {
+            QModelIndex index = model->index(0,0);//取得user_id
+            QString user_id=index.data().toString();
+            QSqlQuery query(db);
+            QString sql="select * from T_USER where user_id="+user_id+";";
+            query.exec(sql);
+            while(query.next())
+            {
+                QString userid=query.value(0).toString();
+                QString user_name=query.value(1).toString();
+                QString user_status=query.value(2).toString();
+                myHtml="<h1 style=text-align:center>用户借阅记录如下：</h1><h4>用户ID:"+userid+"</h4><h4>用户名:"+user_name+"</h4><h4>用户身份:"+user_status+"</h4>";
+            }
+      }
+
+      if(2==myOperationgStyle)//book
+      {
+          QModelIndex index = model->index(0,2);//取得user_id
+          QString book_id=index.data().toString();
+          QSqlQuery query(db);
+          QString sql="select * from T_BOOK where book_id="+book_id+";";
+          query.exec(sql);
+          while(query.next())
+          {
+              QString bookid=query.value(0).toString();
+              QString book_name=query.value(1).toString();
+              QString press_id=query.value(2).toString();
+              QString press_name=query.value(3).toString();
+              QString press_time=query.value(4).toString();
+              myHtml="<h1 style=text-align:center>指定图书借阅记录如下：</h1><h4>图书ID:"+bookid+"</h4><h4>图书名:"+book_name+"</h4><h4>出版社ID :"+press_id+"</h4><h4>出版社名称:"+press_name+"</h4><h4>出版时间:"+press_time+"</h4>";
+          }
+
+      }
+      db.close();
+      QSqlDatabase::removeDatabase("QSQLITE");
+    }
+
+    myHtml=myHtml+"<table border=1><tr><th>用户ID</th><th>用户名</th><th>书ID</th><th>书名</th><th>操作类型</th><th>操作时间</th><th>罚款金额</th></tr>";
+    for(int i=0;i<row;i++)
+    {
+        myHtml=myHtml+"<tr>";
+        for(int j=0;j<column;j++)
+        {
+              QModelIndex index = model->index(i,j);//依次取得所有单元格的值
+              QString date=index.data().toString();
+              myHtml=myHtml+"<td>"+date+"</td>";
+             // qDebug()<<"test:"<<index.data()<<endl;
+        }
+        myHtml=myHtml+"</tr>";
+    }
+    myHtml=myHtml+"</table>";
+    printViewDialog *pPrintViewDlg = new printViewDialog(this);
+    pPrintViewDlg->setModal(false);
+    connect(this,SIGNAL(sendMyHtml(QString)),pPrintViewDlg,SLOT(getMessage(QString)));//声明槽的映射关系
+    emit sendMyHtml(myHtml);
+    pPrintViewDlg->show();
+
+
+
 }

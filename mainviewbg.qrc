@@ -6,6 +6,14 @@
         <file>Pictures/记录管理.png</file>
         <file>Pictures/还书.png</file>
         <file>Pictures/出版社管理.png</file>
+        <file>Pictures/添加用户1.png</file>
+        <file>Pictures/删除用户1.png</file>
+        <file>Pictures/update.png</file>
+        <file>Pictures/显示所有.png</file>
+        <file>Pictures/打印预览.png</file>
+        <file>Pictures/打印.png</file>
+        <file>Pictures/筛选.png</file>
+        <file>Pictures/显示所有记录.png</file>
     </qresource>
     <qresource prefix="/pictures/Background">
         <file>Pictures/图书馆2.png</file>
