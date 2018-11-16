@@ -64,6 +64,7 @@ void bookmanagerDialog::on_BtnSearch_clicked()
                 ui->tableWidgetBook->setItem(0,4,pPressTimeItem);
                 QTableWidgetItem *pPressStatusItem = new QTableWidgetItem((char *)p_book_status);
                 QTableWidgetItem *pPressStatusItemTwo = new QTableWidgetItem((char *)"在库");
+                QTableWidgetItem *pPressStatusItemThree = new QTableWidgetItem((char *)"已借出");
                 QString book_status = pPressStatusItem->text();
                 if(book_status == "0")
                 {
@@ -71,7 +72,7 @@ void bookmanagerDialog::on_BtnSearch_clicked()
                 }
                 else
                 {
-                    ui->tableWidgetBook->setItem(0,5,pPressStatusItem);
+                    ui->tableWidgetBook->setItem(0,5,pPressStatusItemThree);
                 }
                 //QTableWidget根据内容调整列宽
                 ui->tableWidgetBook->resizeColumnsToContents();
@@ -119,6 +120,7 @@ void bookmanagerDialog::showAllBooks()
                     ui->tableWidgetBook->setItem(0,4,pPressTimeItem);
                     QTableWidgetItem *pPressStatusItem = new QTableWidgetItem((char *)p_book_status);
                     QTableWidgetItem *pPressStatusItemTwo = new QTableWidgetItem((char *)"在库");
+                    QTableWidgetItem *pPressStatusItemThree = new QTableWidgetItem((char *)"已借出");
                     QString book_status = pPressStatusItem->text();
                     if(book_status == "0")
                     {
@@ -126,7 +128,7 @@ void bookmanagerDialog::showAllBooks()
                     }
                     else
                     {
-                        ui->tableWidgetBook->setItem(0,5,pPressStatusItem);
+                        ui->tableWidgetBook->setItem(0,5,pPressStatusItemThree);
                     }
                     //QTableWidget根据内容调整列宽
                     ui->tableWidgetBook->resizeColumnsToContents();

@@ -39,7 +39,7 @@
     <string>取消</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -53,17 +53,28 @@
      <widget class="QLineEdit" name="EdtBookName"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="EdtPressId"/>
+     <widget class="QLineEdit" name="EdtPressId">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="EdtPressName"/>
+     <widget class="QComboBox" name="CbxAllPress">
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="EdtPressDate"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
