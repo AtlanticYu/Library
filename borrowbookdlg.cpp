@@ -43,6 +43,9 @@ void BorrowBookDlg::on_Btnsearch_clicked()
             ui->tableWidget->setItem(0,3,bBkstatusItem);
             }
         }
+        else{
+            QMessageBox::information(this,"警告","不存在的用户");
+        }
         sqlite3_close(pDb);
     }
 }
@@ -67,9 +70,10 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
       QSqlQuery query(db);
       bool a=query.exec(sql);
       if(!query.next()){
-          QMessageBox::information(this,"failed","NULL");
+          QMessageBox::information(this,"警告","不存在的用户");
           return;
       }
+      else{
       QString usrname=query.value("user_name").toString();
       int result=query.value("available_number").toInt();
       if(result==0){
@@ -77,7 +81,6 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
       }
       else{
           db.open();
-         // QSqlQuery query1(db);
           QString sql0="select * from T_BOOK where book_id="+bkid+";";
           bool c=query.exec(sql0);
           if(!query.next()){
@@ -85,15 +88,20 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
               return;
           }
           QString bkname=query.value("book_name").toString();
+          int status=query.value("book_status").toInt();
+          if(status==1){
+              QMessageBox::information(this,"警告","该书已借出");
+          }
+          else{
           QDateTime time =QDateTime::currentDateTime();
-          QString str=time.toString("yyyy-MM-dd hh:mm");
+          QString str=time.toString("yyyy-MM-dd hh:mm:ss");
           db.close();
           int number=result-1;
           QString num;
           num=QString::number(number);
           QString sql1="update T_USER set available_number="+num+" where user_id="+usrid+";";
           QString sql2="update T_BOOK set book_status=1 where book_id="+bkid+";";
-          QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bkid+",'"+bkname+"','借出','"+str+"');";
+          QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bkid+",'"+bkname+"','借书','"+str+"');";
           //bool m=query.exec(sql2);
           sqlite3 *pDb;
           sqlite3_stmt *Ustmt;
@@ -108,6 +116,8 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
           if(sqlite3_exec(pDb,sql3.toStdString().c_str(),NULL,NULL,&errmsg)==SQLITE_OK){
               QMessageBox::warning(NULL, "温馨提示", "插入借阅记录成功！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
           }
+          }
+      }
       }
          /* db.commit();
          // if(!query.next()){

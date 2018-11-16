@@ -6,33 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
+    <width>400</width>
     <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>用户借阅</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>-60</x>
-     <y>290</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(221,240,237);</string>
+  </property>
   <widget class="QLineEdit" name="Edtbkid">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>70</x>
      <y>20</y>
      <width>113</width>
      <height>25</height>
@@ -42,14 +29,24 @@
   <widget class="QPushButton" name="Btnsearch">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>190</x>
      <y>20</y>
-     <width>89</width>
-     <height>25</height>
+     <width>91</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>搜索</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="mainviewbg.qrc">
+     <normaloff>:/pictures/icons/Pictures/查询业务.png</normaloff>:/pictures/icons/Pictures/查询业务.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -58,7 +55,7 @@
      <x>0</x>
      <y>80</y>
      <width>401</width>
-     <height>192</height>
+     <height>261</height>
     </rect>
    </property>
    <column>
@@ -85,7 +82,7 @@
   <widget class="QLineEdit" name="Edtuserid">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>70</x>
      <y>50</y>
      <width>113</width>
      <height>25</height>
@@ -95,7 +92,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>0</x>
      <y>20</y>
      <width>67</width>
      <height>17</height>
@@ -114,7 +111,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>0</x>
      <y>50</y>
      <width>67</width>
      <height>17</height>
@@ -130,50 +127,29 @@
   <widget class="QPushButton" name="BtnBorrow">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>50</y>
+     <x>290</x>
+     <y>20</y>
      <width>89</width>
-     <height>25</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>租借</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="mainviewbg.qrc">
+     <normaloff>:/pictures/icons/Pictures/借阅.png</normaloff>:/pictures/icons/Pictures/借阅.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
    </property>
   </widget>
  </widget>
- <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>BorrowBookDlg</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>BorrowBookDlg</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <resources>
+  <include location="mainviewbg.qrc"/>
+ </resources>
+ <connections/>
 </ui>

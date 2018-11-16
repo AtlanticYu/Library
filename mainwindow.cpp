@@ -48,6 +48,12 @@ void MainWindow::on_BtnUserManager_clicked()
 
 }
 
+void MainWindow::on_BtnReturn_clicked()
+{
+    pReturnDlg=new ReturnBookDlg(this);
+    pReturnDlg->show();
+}
+
 void MainWindow::on_BtnBookManager_clicked()
 {
     bookmanagerDialog BookDlg(this);
