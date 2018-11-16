@@ -6,6 +6,7 @@
 #include"recorddialog.h"
 #include"userdialog.h"
 #include "returnbookdlg.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,6 +29,8 @@ private slots:
     void on_BtnUserManager_clicked();
 
     void on_BtnReturn_clicked();
+    
+    void on_BtnBookManager_clicked();
 
 private:
     Ui::MainWindow *ui;

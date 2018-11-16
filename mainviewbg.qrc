@@ -9,6 +9,8 @@
         <file>Pictures/查询业务.png</file>
         <file>Pictures/借阅.png</file>
         <file>Pictures/借阅归还.png</file>
+        <file>Pictures/主页 Two.png</file>
+        <file>Pictures/主页 One.png</file>
     </qresource>
     <qresource prefix="/pictures/Background">
         <file>Pictures/图书馆2.png</file>

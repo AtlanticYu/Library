@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "pressmanagerdialog.h"
+#include "bookmanagerdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,4 +52,11 @@ void MainWindow::on_BtnReturn_clicked()
 {
     pReturnDlg=new ReturnBookDlg(this);
     pReturnDlg->show();
+}
+
+void MainWindow::on_BtnBookManager_clicked()
+{
+    bookmanagerDialog BookDlg(this);
+    BookDlg.setModal(true);
+    BookDlg.exec();
 }

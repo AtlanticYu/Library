@@ -92,6 +92,7 @@ void PressManagerDialog::showEvent(QShowEvent * event)
     showAllPress();
 }
 
+//修改窗体提交后需要的刷新
 void PressManagerDialog::ReceiveRefleshSignal()
 {
     showAllPress();

@@ -27,13 +27,16 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        borrowbookdlg.cpp \
         pressmanagerdialog.cpp \
-        onepressdialog.cpp \
-        recorddialog.cpp \
-        userdialog.cpp \
-        userupdatedialog.cpp \
-        modifypressdialog.cpp \
+    onepressdialog.cpp \
+    recorddialog.cpp \
+    userdialog.cpp \
+    userupdatedialog.cpp \
+    modifypressdialog.cpp \
+    bookmanagerdialog.cpp \
+    modifybookdialog.cpp \
+    borrowbookdlg.cpp \
+    onebookdialog.cpp \
     returnbookdlg.cpp
     
 
@@ -46,7 +49,10 @@ HEADERS += \
     userdialog.h \
     userupdatedialog.h \
     modifypressdialog.h \
-    returnbookdlg.h
+    returnbookdlg.h \
+    bookmanagerdialog.h \
+    modifybookdialog.h \
+    onebookdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -57,6 +63,9 @@ FORMS += \
     userdialog.ui \
     userupdatedialog.ui \
     modifypressdialog.ui \
+    bookmanagerdialog.ui \
+    modifybookdialog.ui \
+    onebookdialog.ui \
     returnbookdlg.ui
 
 
