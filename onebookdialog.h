@@ -23,8 +23,6 @@ private slots:
 
     void on_BtnAddBook_clicked();
 
-    void LoadPressForCbx();
-
     void on_CbxAllPress_currentIndexChanged(const QString &arg1);
 
     void FillPressId();

@@ -34,7 +34,7 @@ SOURCES += \
     userdialog.cpp \
     userupdatedialog.cpp \
     dbManager.cpp \
-    printviewdialog.cpp
+    printviewdialog.cpp \
     modifypressdialog.cpp \
     bookmanagerdialog.cpp \
     modifybookdialog.cpp \
@@ -51,7 +51,7 @@ HEADERS += \
     userdialog.h \
     userupdatedialog.h \
     dbManager.h \
-    printviewdialog.h
+    printviewdialog.h \
     modifypressdialog.h \
     returnbookdlg.h \
     bookmanagerdialog.h \
@@ -66,7 +66,7 @@ FORMS += \
     recorddialog.ui \
     userdialog.ui \
     userupdatedialog.ui \
-    printviewdialog.ui
+    printviewdialog.ui \
     modifypressdialog.ui \
     bookmanagerdialog.ui \
     modifybookdialog.ui \
