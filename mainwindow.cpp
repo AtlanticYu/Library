@@ -46,3 +46,9 @@ void MainWindow::on_BtnUserManager_clicked()
     pUserDlg->show();
 
 }
+
+void MainWindow::on_BtnReturn_clicked()
+{
+    pReturnDlg=new ReturnBookDlg(this);
+    pReturnDlg->show();
+}

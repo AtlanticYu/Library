@@ -33,7 +33,8 @@ SOURCES += \
         recorddialog.cpp \
         userdialog.cpp \
         userupdatedialog.cpp \
-        modifypressdialog.cpp
+        modifypressdialog.cpp \
+    returnbookdlg.cpp
     
 
 HEADERS += \
@@ -44,7 +45,8 @@ HEADERS += \
     recorddialog.h \
     userdialog.h \
     userupdatedialog.h \
-    modifypressdialog.h
+    modifypressdialog.h \
+    returnbookdlg.h
 
 FORMS += \
         mainwindow.ui \
@@ -54,7 +56,8 @@ FORMS += \
     recorddialog.ui \
     userdialog.ui \
     userupdatedialog.ui \
-    modifypressdialog.ui
+    modifypressdialog.ui \
+    returnbookdlg.ui
 
 
 # Default rules for deployment.
