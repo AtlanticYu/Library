@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pressmanagerdialog.h"
+#include "bookmanagerdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,6 +18,17 @@ MainWindow::~MainWindow()
 }
 //wu
 
+void MainWindow::on_BtnBorrow_clicked()
+{
+    BkrDlg=new BorrowBookDlg(this);
+    BkrDlg->show();
+}
+void MainWindow::on_BtnPressManager_clicked()
+{
+    PressManagerDialog PressDlg(this);
+    PressDlg.setModal(true);
+    PressDlg.exec();
+}
 void MainWindow::on_BtnRecordManager_clicked()
 {
     if(pRecordDlg==NULL) {
@@ -33,4 +46,17 @@ void MainWindow::on_BtnUserManager_clicked()
     }
     pUserDlg->show();
 
+}
+
+void MainWindow::on_BtnReturn_clicked()
+{
+    pReturnDlg=new ReturnBookDlg(this);
+    pReturnDlg->show();
+}
+
+void MainWindow::on_BtnBookManager_clicked()
+{
+    bookmanagerDialog BookDlg(this);
+    BookDlg.setModal(true);
+    BookDlg.exec();
 }

@@ -1,3 +1,4 @@
+
 <RCC>
     <qresource prefix="/pictures/icons">
         <file>Pictures/用户管理.png</file>
@@ -14,8 +15,14 @@
         <file>Pictures/打印.png</file>
         <file>Pictures/筛选.png</file>
         <file>Pictures/显示所有记录.png</file>
+        <file>Pictures/查询业务.png</file>
+        <file>Pictures/借阅.png</file>
+        <file>Pictures/借阅归还.png</file>
+        <file>Pictures/主页 Two.png</file>
+        <file>Pictures/主页 One.png</file>
     </qresource>
     <qresource prefix="/pictures/Background">
         <file>Pictures/图书馆2.png</file>
     </qresource>
 </RCC>
+

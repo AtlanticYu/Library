@@ -28,26 +28,50 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+        pressmanagerdialog.cpp \
+    onepressdialog.cpp \
     recorddialog.cpp \
     userdialog.cpp \
     userupdatedialog.cpp \
     dbManager.cpp \
     printviewdialog.cpp
-
+    modifypressdialog.cpp \
+    bookmanagerdialog.cpp \
+    modifybookdialog.cpp \
+    borrowbookdlg.cpp \
+    onebookdialog.cpp \
+    returnbookdlg.cpp
+    
 HEADERS += \
         mainwindow.h \
+    borrowbookdlg.h \
+    pressmanagerdialog.h \
+    onepressdialog.h \
     recorddialog.h \
     userdialog.h \
     userupdatedialog.h \
     dbManager.h \
     printviewdialog.h
+    modifypressdialog.h \
+    returnbookdlg.h \
+    bookmanagerdialog.h \
+    modifybookdialog.h \
+    onebookdialog.h
 
 FORMS += \
         mainwindow.ui \
+    borrowbookdlg.ui \
+    pressmanagerdialog.ui \
+    onepressdialog.ui \
     recorddialog.ui \
     userdialog.ui \
     userupdatedialog.ui \
     printviewdialog.ui
+    modifypressdialog.ui \
+    bookmanagerdialog.ui \
+    modifybookdialog.ui \
+    onebookdialog.ui \
+    returnbookdlg.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -56,3 +80,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     mainviewbg.qrc
+LIBS += -lsqlite3
