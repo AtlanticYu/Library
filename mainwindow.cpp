@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     pRecordDlg=NULL;
     pUserDlg=NULL;
+    PressManagerDlg = NULL;
+    BookManagerDlg = NULL;
 }
 //yu
 MainWindow::~MainWindow()
@@ -25,9 +27,12 @@ void MainWindow::on_BtnBorrow_clicked()
 }
 void MainWindow::on_BtnPressManager_clicked()
 {
-    PressManagerDialog PressDlg(this);
-    PressDlg.setModal(false);
-    PressDlg.exec();
+    if(PressManagerDlg == NULL)
+    {
+        PressManagerDlg = new PressManagerDialog(this);
+        PressManagerDlg->setModal(false);
+    }
+    PressManagerDlg->show();
 }
 void MainWindow::on_BtnRecordManager_clicked()
 {
@@ -56,7 +61,10 @@ void MainWindow::on_BtnReturn_clicked()
 
 void MainWindow::on_BtnBookManager_clicked()
 {
-    bookmanagerDialog BookDlg(this);
-    BookDlg.setModal(false);
-    BookDlg.exec();
+    if(BookManagerDlg == NULL)
+    {
+        BookManagerDlg = new bookmanagerDialog(this);
+        BookManagerDlg->setModal(false);
+    }
+    BookManagerDlg->show();
 }
