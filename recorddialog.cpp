@@ -19,10 +19,6 @@ RecordDialog::~RecordDialog()
 
 void RecordDialog::on_pushButton_UserId_clicked()
 {
-    //clear
-    model= new QSqlQueryModel(ui->tableView_record);
-    mymodel=1;
-    ui->tableView_record->setModel(model);
     //连接数据库
        QSqlDatabase db;
        if (QSqlDatabase::contains("myconn"))
@@ -40,47 +36,44 @@ void RecordDialog::on_pushButton_UserId_clicked()
             QMessageBox::information(this,"失败","连接数据库失败.");
             return;
        }
-       //连接成功
-       else
-       {
-          QMessageBox::information(this,"成功","连接数据库成功");
-          QString user_id=ui->lineEdit_UserId->text();
-          QString sql="select *from  T_RECORD where user_id="+user_id+";";
-          QSqlQuery query(db);
-          query.exec(sql);
-          if(!query.next())
-          {
-             QMessageBox::information(this,"错误","不存在该ID用户的操作记录");
-             return;
-          }
-          else
-          {
-              myOperationgStyle=1;
-              model->setQuery(sql,db);
-              model->removeColumn(0);//不显示记录ID列
-              model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
-              model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
-              model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
-              model->setHeaderData(3,Qt::Horizontal,tr("书名"));
-              model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
-              model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
-              model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
-              ui->tableView_record->setModel(model);
-          }
-          db.close();
-          QSqlDatabase::removeDatabase("QSQLITE");
+        QMessageBox::information(this,"成功","连接数据库成功");
+        QString user_id=ui->lineEdit_UserId->text();
+        QString sql="select *from  T_RECORD where user_id="+user_id+";";
+        QSqlQuery query(db);
+        query.exec(sql);
+        if(!query.next())
+        {
+           QMessageBox::information(this,"错误","不存在该ID用户的操作记录");
+           return;
         }
-
-
+        if(0==mymodel)
+        {
+            model= new QSqlTableModel(ui->tableView_record,db);
+            model->setTable("T_RECORD");
+            model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+            model->removeColumn(0);//不显示记录ID列
+            model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
+            model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
+            model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
+            model->setHeaderData(3,Qt::Horizontal,tr("书名"));
+            model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
+            model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
+            model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
+            mymodel=1;
+         }
+         model->setFilter(QObject::tr("user_id='%1'").arg(user_id));
+         if(!model->select())
+         {
+            qDebug()<<"error"<<endl;
+         }
+         myOperationgStyle=1;
+         ui->tableView_record->setModel(model);
+         db.close();
+         QSqlDatabase::removeDatabase("QSQLITE");
 }
 
 void RecordDialog::on_pushButton_BookId_clicked()
 {
-    //clear
-    model= new QSqlQueryModel(ui->tableView_record);
-    ui->tableView_record->setModel(model);
-    mymodel=1;
-
     //连接数据库
        QSqlDatabase db;
        if (QSqlDatabase::contains("myconn"))
@@ -92,7 +85,6 @@ void RecordDialog::on_pushButton_BookId_clicked()
            db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
        }
        db.setDatabaseName("./MyLibrary.db");
-
        //连接失败
        if (!db.open())
        {
@@ -100,45 +92,44 @@ void RecordDialog::on_pushButton_BookId_clicked()
             return;
        }
        //连接成功
-       else
+       QMessageBox::information(this,"成功","连接数据库成功");
+       QString book_id=ui->lineEdit_BookId->text();
+       QString sql="select *from  T_RECORD where book_id="+book_id+";";
+       QSqlQuery query(db);
+       query.exec(sql);
+       if(!query.next())
        {
-          QMessageBox::information(this,"成功","连接数据库成功");
-          QString book_id=ui->lineEdit_BookId->text();
-          QString sql="select *from  T_RECORD where book_id="+book_id+";";
-          QSqlQuery query(db);
-          query.exec(sql);
-          if(!query.next())
-          {
-             QMessageBox::information(this,"错误","不存在该ID书本的借阅记录");
-             return;
-          }
-          else
-          {
-              myOperationgStyle=2;
-              model->setQuery(sql,db);
-              model->removeColumn(0);//不显示记录ID列
-              model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
-              model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
-              model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
-              model->setHeaderData(3,Qt::Horizontal,tr("书名"));
-              model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
-              model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
-              model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
-              ui->tableView_record->setModel(model);
-          }
-          db.close();
-          QSqlDatabase::removeDatabase("QSQLITE");
+          QMessageBox::information(this,"错误","不存在该ID书本的借阅记录");
+          return;
+       }
+       if(0==mymodel)
+       {
+           model= new QSqlTableModel(ui->tableView_record,db);
+           model->setTable("T_RECORD");
+           model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+           model->removeColumn(0);//不显示记录ID列
+           model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
+           model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
+           model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
+           model->setHeaderData(3,Qt::Horizontal,tr("书名"));
+           model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
+           model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
+           model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
+           mymodel=1;
         }
-
+        model->setFilter(QObject::tr("book_id='%1'").arg(book_id));
+        if(!model->select())
+        {
+           qDebug()<<"error"<<endl;
+        }
+        myOperationgStyle=2;
+        ui->tableView_record->setModel(model);
+        db.close();
+        QSqlDatabase::removeDatabase("QSQLITE");
 }
 
 void RecordDialog::on_pushButton_ShowAll_clicked()
 {
-    //clear
-    model= new QSqlQueryModel(ui->tableView_record);
-    ui->tableView_record->setModel(model);
-    mymodel=1;
-
     //连接数据库
     QSqlDatabase db;
     if (QSqlDatabase::contains("myconn"))
@@ -150,42 +141,39 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
         db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
     }
     db.setDatabaseName("./MyLibrary.db");
-
     //连接失败
     if (!db.open())
     {
         QMessageBox::information(this,"失败","连接数据库失败.");
         return;
     }
-    //连接成功
-    else
+
+    QMessageBox::information(this,"成功","连接数据库成功");
+    if(0==mymodel)
     {
-       QMessageBox::information(this,"成功","连接数据库成功");
-       QString sql="select *from  T_RECORD;";
-       QSqlQuery query(db);
-       query.exec(sql);
-       if(!query.next())
-       {
-          QMessageBox::information(this,"错误","操作记录表为空");
-          return;
-       }
-       else
-       {
-           myOperationgStyle=0;
-           model->setQuery(sql,db);
-           model->removeColumn(0);//不显示记录ID列
-           model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
-           model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
-           model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
-           model->setHeaderData(3,Qt::Horizontal,tr("书名"));
-           model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
-           model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
-           model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
-           ui->tableView_record->setModel(model);
-       }
-       db.close();
-       QSqlDatabase::removeDatabase("QSQLITE");
-     }
+        model= new QSqlTableModel(ui->tableView_record,db);
+        model->setTable("T_RECORD");
+        model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+        model->removeColumn(0);//不显示记录ID列
+        model->setHeaderData(0,Qt::Horizontal,tr("用户ID"));
+        model->setHeaderData(1,Qt::Horizontal,tr("用户名"));
+        model->setHeaderData(2,Qt::Horizontal,tr("书ID"));
+        model->setHeaderData(3,Qt::Horizontal,tr("书名"));
+        model->setHeaderData(4,Qt::Horizontal,tr("操作类型"));
+        model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
+        model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
+        mymodel=1;
+    }
+    if(!model->select())//select all record
+    {
+        QMessageBox::information(this,"error","数据库操作记录表格为空");
+    }
+    myOperationgStyle=0;
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+    db.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
+
 
 }
 
@@ -334,7 +322,5 @@ void RecordDialog::on_pushButton_ShowPdf_clicked()
     connect(this,SIGNAL(sendMyHtml(QString)),pPrintViewDlg,SLOT(getMessage(QString)));//声明槽的映射关系
     emit sendMyHtml(myHtml);
     pPrintViewDlg->show();
-
-
 
 }

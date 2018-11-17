@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include<QSqlQuery>
-#include<QSqlQueryModel>
+#include<QSqlTableModel>
 #include <QMessageBox>
 #include"printviewdialog.h"
 #include<sqlite3.h>
@@ -39,7 +39,7 @@ signals:
 
 private:
     Ui::RecordDialog *ui;
-    QSqlQueryModel *model;
+    QSqlTableModel *model;
     int mymodel;
     int myOperationgStyle;//0 aLL,1 user,2 book
 };

@@ -8,7 +8,7 @@ printViewDialog::printViewDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 //    QString html;
-//    html="<h1>吴汶斌是大傻逼</h1>";
+//    html="<h1>test</h1>";
 //    ui->textEdit->setHtml(html);
 }
 

@@ -197,6 +197,7 @@ void UserDialog::on_pushButton_Delete_clicked()
         QMessageBox::information(this,"error","删除失败.");
         return;
     }
+
     //refresh
     refreshTable();
     db.close();
