@@ -26,7 +26,7 @@ void MainWindow::on_BtnBorrow_clicked()
 void MainWindow::on_BtnPressManager_clicked()
 {
     PressManagerDialog PressDlg(this);
-    PressDlg.setModal(true);
+    PressDlg.setModal(false);
     PressDlg.exec();
 }
 void MainWindow::on_BtnRecordManager_clicked()
@@ -57,6 +57,6 @@ void MainWindow::on_BtnReturn_clicked()
 void MainWindow::on_BtnBookManager_clicked()
 {
     bookmanagerDialog BookDlg(this);
-    BookDlg.setModal(true);
+    BookDlg.setModal(false);
     BookDlg.exec();
 }

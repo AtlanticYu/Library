@@ -230,7 +230,7 @@ void UserDialog::on_pushButton_Update_clicked()
     QString user_status=index.sibling(curRow,2).data().toString();
     //
     pUserUpdateDlg = new UserUpdateDialog(this);
-    pUserUpdateDlg->setModal(true);
+    pUserUpdateDlg->setModal(false);
     connect(this,SIGNAL(sendMyRow(QString ,QString ,QString)),pUserUpdateDlg,SLOT(getMessage(QString ,QString ,QString)));
     emit sendMyRow(user_id,user_name ,user_status);
     if(pUserUpdateDlg->exec()==QDialog::Accepted)

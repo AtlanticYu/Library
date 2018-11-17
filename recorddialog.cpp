@@ -20,7 +20,6 @@ RecordDialog::~RecordDialog()
 void RecordDialog::on_pushButton_UserId_clicked()
 {
     //连接数据库
-       QSqlDatabase db;
        if (QSqlDatabase::contains("myconn"))
        {
            db = QSqlDatabase::database("myconn");
@@ -46,8 +45,7 @@ void RecordDialog::on_pushButton_UserId_clicked()
            QMessageBox::information(this,"错误","不存在该ID用户的操作记录");
            return;
         }
-        if(0==mymodel)
-        {
+
             model= new QSqlTableModel(ui->tableView_record,db);
             model->setTable("T_RECORD");
             model->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -60,7 +58,7 @@ void RecordDialog::on_pushButton_UserId_clicked()
             model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
             model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
             mymodel=1;
-         }
+
          model->setFilter(QObject::tr("user_id='%1'").arg(user_id));
          if(!model->select())
          {
@@ -75,7 +73,6 @@ void RecordDialog::on_pushButton_UserId_clicked()
 void RecordDialog::on_pushButton_BookId_clicked()
 {
     //连接数据库
-       QSqlDatabase db;
        if (QSqlDatabase::contains("myconn"))
        {
            db = QSqlDatabase::database("myconn");
@@ -102,8 +99,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
           QMessageBox::information(this,"错误","不存在该ID书本的借阅记录");
           return;
        }
-       if(0==mymodel)
-       {
+
            model= new QSqlTableModel(ui->tableView_record,db);
            model->setTable("T_RECORD");
            model->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -116,7 +112,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
            model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
            model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
            mymodel=1;
-        }
+
         model->setFilter(QObject::tr("book_id='%1'").arg(book_id));
         if(!model->select())
         {
@@ -131,7 +127,6 @@ void RecordDialog::on_pushButton_BookId_clicked()
 void RecordDialog::on_pushButton_ShowAll_clicked()
 {
     //连接数据库
-    QSqlDatabase db;
     if (QSqlDatabase::contains("myconn"))
     {
         db = QSqlDatabase::database("myconn");
@@ -147,10 +142,8 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
         QMessageBox::information(this,"失败","连接数据库失败.");
         return;
     }
-
     QMessageBox::information(this,"成功","连接数据库成功");
-    if(0==mymodel)
-    {
+
         model= new QSqlTableModel(ui->tableView_record,db);
         model->setTable("T_RECORD");
         model->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -163,7 +156,6 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
         model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
         model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
         mymodel=1;
-    }
     if(!model->select())//select all record
     {
         QMessageBox::information(this,"error","数据库操作记录表格为空");
@@ -173,35 +165,6 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
     ui->tableView_record->show();
     db.close();
     QSqlDatabase::removeDatabase("QSQLITE");
-
-
-}
-
-void RecordDialog::on_pushButton_screen_clicked()
-{
-    if(mymodel==0)
-    {
-        QMessageBox::information(this,"错误","表格记录为空，筛选失败.");
-        return;
-    }
-    if(ui->tableView_record->model()->rowCount()==0)
-    {
-        QMessageBox::information(this,"错误","表格记录为空，筛选失败.");
-        return;
-    }
-    int status=getStatus();
-    switch (status)
-    {
-        case 0:QMessageBox::information(this,"000","000");break;
-        case 1:QMessageBox::information(this,"111","111");break;
-        case 2:QMessageBox::information(this,"222","222");break;
-        case 3:QMessageBox::information(this,"333","333");break;
-        case 4:QMessageBox::information(this,"444","444");break;
-        case 5:QMessageBox::information(this,"555","555");break;
-        case 6:QMessageBox::information(this,"666","666");break;
-        case 7:QMessageBox::information(this,"7777","7777");break;
-        default:QMessageBox::information(this,"....","default");break;
-    }
 
 
 }
@@ -228,6 +191,355 @@ int RecordDialog::getStatus()
         return 7;
 }
 
+//---------------------------------------------------all screen------------------------------------------
+void  RecordDialog::screen1()
+{
+    model->setFilter(QObject::tr("operation_type='%1'").arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void  RecordDialog::screen2()
+{
+    model->setFilter(QObject::tr("operation_type='%1'").arg("还书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void  RecordDialog::screen3()
+{
+    model->setFilter(QObject::tr("operation_type='%1'").arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有超期罚款记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void  RecordDialog::screen4()
+{
+    model->setFilter(QObject::tr("operation_type='%1' or operation_type='%2'").arg("借书").arg("还书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有借书,还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void  RecordDialog::screen5()
+{
+    model->setFilter(QObject::tr("operation_type='%1' or operation_type='%2'").arg("超期罚款").arg("还书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有超期罚款,还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void  RecordDialog::screen6()
+{
+    model->setFilter(QObject::tr("operation_type='%1' or operation_type='%2'").arg("超期罚款").arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询所有超期罚款,借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void  RecordDialog::screen7()
+{
+    model->setFilter(QObject::tr("operation_type='%1' or operation_type='%2' or operation_type='%3'").arg("超期罚款").arg("借书").arg("还书"));
+    if(!model->select())
+     {
+         QMessageBox::information(this,"error","筛选所有类型的操作记录,失败");
+     }
+     ui->tableView_record->setModel(model);
+     ui->tableView_record->show();
+    QMessageBox::information(this,"ok","筛选所有类型的操作记录,成功");
+
+}
+
+//----------------------------------------------------user screen-------------------------------------------
+void RecordDialog:: screen11()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2'").arg(user_id).arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen22()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2'").arg(user_id).arg("还书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void RecordDialog:: screen33()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2'").arg(user_id).arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户超期罚款记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen44()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2' or user_id='%1' and operation_type='%3'").arg(user_id).arg("还书").arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户还书,借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void RecordDialog:: screen55()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2' or user_id='%1' and operation_type='%3'").arg(user_id).arg("还书").arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户超期罚款,还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen66()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1' and operation_type='%2' or user_id='%1' and operation_type='%3'").arg(user_id).arg("借书").arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询用户超期罚款,借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen77()
+{
+    QModelIndex index = model->index(0,0);//取得user_id
+    QString user_id=index.data().toString();
+    model->setFilter(QObject::tr("user_id='%1'").arg(user_id));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","筛选用户,所有类型的操作记录,失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+    QMessageBox::information(this,"ok","筛选用户,所有类型的操作记录成功");
+}
+
+//----------------------------------------------------book screen-----------------------------------------------
+void RecordDialog:: screen111()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2'").arg(book_id).arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen222()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2'").arg(book_id).arg("还书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void RecordDialog:: screen333()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2'").arg(book_id).arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书超期罚款记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen444()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2' or book_id='%1' and operation_type='%3'").arg(book_id).arg("还书").arg("借书"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书还书,借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+}
+void RecordDialog:: screen555()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2' or book_id='%1' and operation_type='%3'").arg(book_id).arg("还书").arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书超期罚款,还书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen666()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1' and operation_type='%2' or book_id='%1' and operation_type='%3'").arg(book_id).arg("借书").arg("超期罚款"));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","查询图书超期罚款,借书记录失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+
+}
+void RecordDialog:: screen777()
+{
+    QModelIndex index = model->index(0,2);//取得book_id
+    QString book_id=index.data().toString();
+    model->setFilter(QObject::tr("book_id='%1'").arg(book_id));
+    if(!model->select())
+    {
+        QMessageBox::information(this,"error","筛选图书,所有类型的操作记录,失败");
+    }
+    ui->tableView_record->setModel(model);
+    ui->tableView_record->show();
+    QMessageBox::information(this,"ok","筛选图书,所有类型的操作记录,成功");
+}
+
+
+
+
+
+void RecordDialog::on_pushButton_screen_clicked()
+{
+    if(mymodel==0)
+    {
+        QMessageBox::information(this,"错误","表格记录为空，筛选失败.");
+        return;
+    }
+    if(ui->tableView_record->model()->rowCount()==0)
+    {
+        QMessageBox::information(this,"错误","表格记录为空，筛选失败.");
+        return;
+    }
+    if (QSqlDatabase::contains("myconn"))
+    {
+        db = QSqlDatabase::database("myconn");
+    }
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
+    }
+    db.setDatabaseName("./MyLibrary.db");
+    //连接失败
+    if (!db.open())
+    {
+        QMessageBox::information(this,"失败","连接数据库失败.");
+        return;
+    }
+    QMessageBox::information(this,"成功","连接数据库成功");
+    if(myOperationgStyle==0)//all
+    {
+        int status=getStatus();
+        switch (status)
+        {
+            case 0:QMessageBox::information(this,"ok","您并未勾选筛选条件");break;
+            case 1:screen1();break;
+            case 2:screen2();break;
+            case 3:screen3();break;
+            case 4:screen4();break;
+            case 5:screen5();break;
+            case 6:screen6();break;
+            case 7:screen7();break;
+            default:QMessageBox::information(this,"error","筛选失败，出现异常");break;
+        }
+
+    }
+    if(myOperationgStyle==1)//user
+    {
+        int status=getStatus();
+        switch (status)
+        {
+            case 0:QMessageBox::information(this,"ok","您并未勾选筛选条件");break;
+            case 1:screen11();break;
+            case 2:screen22();break;
+            case 3:screen33();break;
+            case 4:screen44();break;
+            case 5:screen55();break;
+            case 6:screen66();break;
+            case 7:screen77();break;
+            default:QMessageBox::information(this,"error","筛选失败，出现异常");break;
+        }
+
+    }
+    if(myOperationgStyle==2)//book
+    {
+        int status=getStatus();
+        switch (status)
+        {
+            case 0:QMessageBox::information(this,"ok","您并未勾选筛选条件");break;
+            case 1:screen111();break;
+            case 2:screen222();break;
+            case 3:screen333();break;
+            case 4:screen444();break;
+            case 5:screen555();break;
+            case 6:screen666();break;
+            case 7:screen777();break;
+            default:QMessageBox::information(this,"error","筛选失败，出现异常");break;
+        }
+
+    }
+    db.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
+
+
+}
+
+
+
 void RecordDialog::on_pushButton_ShowPdf_clicked()
 {
     if(mymodel==0)
@@ -248,7 +560,6 @@ void RecordDialog::on_pushButton_ShowPdf_clicked()
     else
     {
         //连接数据库
-        QSqlDatabase db;
         if (QSqlDatabase::contains("myconn"))
         {
            db = QSqlDatabase::database("myconn");
@@ -283,7 +594,7 @@ void RecordDialog::on_pushButton_ShowPdf_clicked()
 
       if(2==myOperationgStyle)//book
       {
-          QModelIndex index = model->index(0,2);//取得user_id
+          QModelIndex index = model->index(0,2);//取得book_id
           QString book_id=index.data().toString();
           QSqlQuery query(db);
           QString sql="select * from T_BOOK where book_id="+book_id+";";
@@ -302,8 +613,7 @@ void RecordDialog::on_pushButton_ShowPdf_clicked()
       db.close();
       QSqlDatabase::removeDatabase("QSQLITE");
     }
-
-    myHtml=myHtml+"<table border=1><tr><th>用户ID</th><th>用户名</th><th>书ID</th><th>书名</th><th>操作类型</th><th>操作时间</th><th>罚款金额</th></tr>";
+    myHtml=myHtml+"<table border='1' cellspacing='0'><tr><th>用户ID</th><th>用户名</th><th>书ID</th><th>书名</th><th>操作类型</th><th>操作时间</th><th>罚款金额</th></tr>";
     for(int i=0;i<row;i++)
     {
         myHtml=myHtml+"<tr>";
