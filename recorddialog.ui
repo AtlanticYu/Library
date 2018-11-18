@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1131</width>
-    <height>686</height>
+    <width>1200</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <rect>
      <x>400</x>
      <y>120</y>
-     <width>731</width>
+     <width>801</width>
      <height>571</height>
     </rect>
    </property>
@@ -31,18 +31,50 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QTableView" name="tableView_record">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>731</width>
+      <width>811</width>
       <height>571</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(228, 227, 227)</string>
-    </property>
+    <column>
+     <property name="text">
+      <string>用户ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>用户名称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>书本ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>书本名称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>操作类型</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>操作时间 </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>罚款金额</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QFrame" name="frame">
@@ -50,7 +82,7 @@
     <rect>
      <x>0</x>
      <y>-1</y>
-     <width>1131</width>
+     <width>1201</width>
      <height>121</height>
     </rect>
    </property>
