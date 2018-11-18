@@ -155,7 +155,7 @@ void bookmanagerDialog::on_BtnBookDelete_clicked()
 {
     //获取选中行数
     int row = ui->tableWidgetBook->currentRow();
-    if(row > 0)
+    if(row >= 0)
     {
         QTableWidgetItem *pIdItem = ui->tableWidgetBook->item(row,0);
         sqlite3 *pDb;

@@ -40,7 +40,7 @@ void PressManagerDialog::on_BtnPressDelete_clicked()
 {
     //获取当前选中行数
     int row = ui->tableWidgetPress->currentRow();
-    if(row > 0)
+    if(row >= 0)
     {
         QTableWidgetItem *pIdItem = ui->tableWidgetPress->item(row,0);
         sqlite3 *pDb;
