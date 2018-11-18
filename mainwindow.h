@@ -7,6 +7,8 @@
 #include"recorddialog.h"
 #include"userdialog.h"
 #include "returnbookdlg.h"
+#include "pressmanagerdialog.h"
+#include "bookmanagerdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +41,8 @@ private:
     RecordDialog *pRecordDlg;
     UserDialog *pUserDlg;
     ReturnBookDlg *pReturnDlg;
+    PressManagerDialog *PressManagerDlg;
+    bookmanagerDialog *BookManagerDlg;
 };
 
 #endif // MAINWINDOW_H
