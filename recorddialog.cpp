@@ -251,52 +251,42 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
 
 int RecordDialog::getStatus()
 {
-    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() && !ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
         return 0;
-    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() && !ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
         return 1;
-    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() && !ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
         return 2;
-    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() && ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
         return 3;
-
-    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() && !ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
         return 4;
-    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() && ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
         return 5;
-    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() && ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
         return 6;
-
-    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() && ui->checkBox_fine->isChecked())
+    if(!ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
         return 7;
+    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
+        return 8;
+    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
+        return 9;
+    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
+        return 10;
+    if(ui->checkBox_borrow->isChecked() && !ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
+        return 11;
+    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
+        return 12;
+    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   !ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
+        return 13;
+    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && !ui->checkBox_fine->isChecked())
+        return 14;
+    if(ui->checkBox_borrow->isChecked() && ui->checkBox_return->isChecked() &&   ui->checkBox_lost->isChecked() && ui->checkBox_fine->isChecked())
+        return 15;
 }
 
 
 void  RecordDialog::screen1()
-{
-    for(int i=0;i<ui->tableWidget->rowCount();)
-    {
-        QString operationg_style=ui->tableWidget->item(i,4)->text();
-        if(operationg_style!="借书")
-            ui->tableWidget->removeRow(i);
-        else
-            i++;
-    }
-
-}
-void  RecordDialog::screen2()
-{
-    for(int i=0;i<ui->tableWidget->rowCount();)
-    {
-        QString operationg_style=ui->tableWidget->item(i,4)->text();
-        if(operationg_style!="还书")
-            ui->tableWidget->removeRow(i);
-        else
-            i++;
-    }
-
-}
-void  RecordDialog::screen3()
 {
     for(int i=0;i<ui->tableWidget->rowCount();)
     {
@@ -308,12 +298,36 @@ void  RecordDialog::screen3()
     }
 
 }
+void  RecordDialog::screen2()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="丢书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+
+}
+void  RecordDialog::screen3()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="丢书" && operationg_style!="超期罚款")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+
+}
 void  RecordDialog::screen4()
 {
     for(int i=0;i<ui->tableWidget->rowCount();)
     {
         QString operationg_style=ui->tableWidget->item(i,4)->text();
-        if(operationg_style=="超期罚款")
+        if(operationg_style!="还书")
             ui->tableWidget->removeRow(i);
         else
             i++;
@@ -325,7 +339,7 @@ void  RecordDialog::screen5()
     for(int i=0;i<ui->tableWidget->rowCount();)
     {
         QString operationg_style=ui->tableWidget->item(i,4)->text();
-        if(operationg_style=="借书")
+        if(operationg_style!="还书" && operationg_style!="超期罚款")
             ui->tableWidget->removeRow(i);
         else
             i++;
@@ -337,7 +351,7 @@ void  RecordDialog::screen6()
     for(int i=0;i<ui->tableWidget->rowCount();)
     {
         QString operationg_style=ui->tableWidget->item(i,4)->text();
-        if(operationg_style=="还书")
+        if(operationg_style!="还书" && operationg_style!="丢书")
             ui->tableWidget->removeRow(i);
         else
             i++;
@@ -346,8 +360,98 @@ void  RecordDialog::screen6()
 }
 void  RecordDialog::screen7()
 {
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style=="借书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+
+}
+void RecordDialog::screen8()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="借书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog:: screen9()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="借书" && operationg_style!="超期罚款")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog:: screen10()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="借书" && operationg_style!="丢书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog:: screen11()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style=="还书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog:: screen12()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style!="借书" && operationg_style!="还书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog:: screen13()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style=="丢书")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog::  screen14()
+{
+    for(int i=0;i<ui->tableWidget->rowCount();)
+    {
+        QString operationg_style=ui->tableWidget->item(i,4)->text();
+        if(operationg_style=="超期罚款")
+            ui->tableWidget->removeRow(i);
+        else
+            i++;
+    }
+}
+void RecordDialog::  screen15()
+{
     QMessageBox::information(this,"OK","显示所有类型,筛选仅针对表格内容哦，亲。");
 }
+
 
 void RecordDialog::on_pushButton_screen_clicked()
 {
@@ -367,6 +471,14 @@ void RecordDialog::on_pushButton_screen_clicked()
     case 5:screen5();break;
     case 6:screen6();break;
     case 7:screen7();break;
+    case 8:screen8();break;
+    case 9:screen9();break;
+    case 10:screen10();break;
+    case 11:screen11();break;
+    case 12:screen12();break;
+    case 13:screen13();break;
+    case 14:screen14();break;
+    case 15:screen15();break;
     default:QMessageBox::information(this,"error","筛选错误.");break;
     }
 

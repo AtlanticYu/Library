@@ -30,6 +30,14 @@ public:
     void  screen5();
     void  screen6();
     void  screen7();
+    void  screen8();
+    void  screen9();
+    void  screen10();
+    void  screen11();
+    void  screen12();
+    void  screen13();
+    void  screen14();
+    void  screen15();
 
 private slots:
     void on_pushButton_UserId_clicked();

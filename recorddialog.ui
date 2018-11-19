@@ -168,7 +168,7 @@
    <widget class="QPushButton" name="pushButton_ShowAll">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>220</x>
       <y>270</y>
       <width>161</width>
       <height>51</height>
@@ -253,7 +253,7 @@
    <widget class="QCheckBox" name="checkBox_borrow">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>200</y>
       <width>92</width>
       <height>23</height>
@@ -266,7 +266,7 @@
    <widget class="QCheckBox" name="checkBox_return">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>100</x>
       <y>200</y>
       <width>92</width>
       <height>23</height>
@@ -279,7 +279,7 @@
    <widget class="QCheckBox" name="checkBox_fine">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>240</x>
       <y>200</y>
       <width>92</width>
       <height>23</height>
@@ -310,6 +310,19 @@
       <width>50</width>
       <height>50</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_lost">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>200</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>丢书</string>
     </property>
    </widget>
   </widget>
