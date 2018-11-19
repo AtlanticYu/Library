@@ -25,7 +25,7 @@ private slots:
 
     void on_CbxAllPress_currentIndexChanged(const QString &arg1);
 
-    void FillPressId();
+    void showMatchId();
 
 private:
     Ui::OneBookDialog *ui;
