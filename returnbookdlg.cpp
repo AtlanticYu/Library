@@ -51,6 +51,7 @@ void ReturnBookDlg::on_BtnSelect_clicked()
             model->setHeaderData(5,Qt::Horizontal,tr("操作时间"));
             model->setHeaderData(6,Qt::Horizontal,tr("罚款金额"));
             ui->viewrecord->setModel(model);
+            ui->viewrecord->resizeColumnsToContents();
         }
         db.close();
         QSqlDatabase::removeDatabase("QSQLITE");
@@ -68,7 +69,7 @@ void ReturnBookDlg::on_BtnReturn_clicked()
     }
     db.setDatabaseName("./MyLibrary.db");
     if(!db.open()){
-        QMessageBox::information(this,"db failed","++");
+        QMessageBox::information(this,"警告","数据库打开失败");
         return;
     }
     QString usrid=ui->Edtuser->text();    //用户ID
@@ -77,7 +78,7 @@ void ReturnBookDlg::on_BtnReturn_clicked()
     QSqlQuery query(db);
     query.exec(sql0);
     if(!query.next()){
-        QMessageBox::information(this,"failed","NULL");
+        QMessageBox::information(this,"警告","sql0执行失败");
         return;
     }
     QString starttime=query.value(6).toString();
@@ -99,14 +100,14 @@ void ReturnBookDlg::on_BtnReturn_clicked()
     QString sql2="select * from T_BOOK where book_id="+bookid+";";
     query.exec(sql1);
     if(!query.next()){
-        QMessageBox::information(this,"failed","NULL");
+        QMessageBox::information(this,"警告","sql1执行失败");
         return;
     }
     QString usrname=query.value(1).toString();
     int number=query.value(3).toInt();
     query.exec(sql2);
     if(!query.next()){
-        QMessageBox::information(this,"failed","NULL");
+        QMessageBox::information(this,"警告","sql2执行失败");
         return;
     }
     QString bkname=query.value(1).toString();
@@ -137,4 +138,54 @@ void ReturnBookDlg::on_BtnReturn_clicked()
         query.exec(sql9);
         QMessageBox::warning(NULL, "温馨提示", "还书成功！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
+    db.close();
 }
+
+void ReturnBookDlg::on_BtnLost_clicked()
+{
+    QSqlDatabase db;
+    if(QSqlDatabase::contains("myconn")){
+        db=QSqlDatabase::database("myconn");
+    }
+    else{
+        db=QSqlDatabase::addDatabase("QSQLITE","myconn");
+    }
+    db.setDatabaseName("./MyLibrary.db");
+    if(!db.open()){
+        QMessageBox::information(this,"警告","打开数据库失败");
+        return;
+    }
+    QString usrid=ui->Edtuser->text();    //用户ID
+    QString bookid=ui->Edtbook->text();       //书ID
+    QString sql0="select * from T_RECORD where user_id="+usrid+" and book_id="+bookid+" and operation_type='借书' order by operation_time desc;";
+    QSqlQuery query(db);
+    query.exec(sql0);
+    if(!query.next()){
+        QMessageBox::information(this,"警告","sql0执行失败");
+        return;
+    }
+    QString starttime=query.value(6).toString();
+    QString usrname=query.value(2).toString();
+    QDateTime str =QDateTime::currentDateTime();
+    QString endtime=str.toString("yyyy-MM-dd hh:mm:ss"); //还书时间
+    QDateTime start=QDateTime::fromString(starttime,"yyyy-MM-dd hh:mm:ss");
+    QDateTime end=QDateTime::fromString(endtime,"yyyy-MM-dd hh:mm:ss");
+    uint stime=start.toTime_t();
+    uint etime=end.toTime_t();
+    int daysec=24*60*60;
+    int day=(etime-stime)/(daysec)+((etime-stime)%(daysec)+(daysec-1))/(daysec);
+    QString sql1="select * from T_BOOK where book_id="+bookid+";";
+    query.exec(sql1);
+    if(!query.next()){
+        QMessageBox::information(this,"警告","sql1执行失败");
+        return;
+    }
+    QString bkname=query.value(1).toString();
+    //QString status=query.value(5).toString();
+    QString sql2="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','丢书','"+endtime+"');";
+    query.exec(sql2);
+    QString sql3="delete from T_BOOK where book_id="+bookid+";";
+    query.exec(sql3);
+    db.close();
+}
+

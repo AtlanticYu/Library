@@ -15,6 +15,9 @@ public:
     explicit BorrowBookDlg(QWidget *parent = nullptr);
     ~BorrowBookDlg();
 
+protected:
+    void ShowBook();
+
 private slots:
     void on_Btnsearch_clicked();
 

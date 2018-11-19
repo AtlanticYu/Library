@@ -18,36 +18,7 @@ BorrowBookDlg::~BorrowBookDlg()
 void BorrowBookDlg::on_Btnsearch_clicked()
 {
     //int row=ui->tableWidget->currentRow();
-    for(int i=0;i<=ui->tableWidget->rowCount();i++){
-        ui->tableWidget->removeRow(i);
-    }
-    sqlite3 *pDb;
-    if(sqlite3_open("./MyLibrary.db",&pDb)==SQLITE_OK){
-        QString id=ui->Edtbkid->text();
-        QString sql="select book_id,book_name,press_name,book_status from T_BOOK where book_id="+id+";";
-        sqlite3_stmt *pStmt;
-        if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,nullptr)==SQLITE_OK){
-          while(sqlite3_step(pStmt)==SQLITE_ROW){
-            const unsigned char *bBkid=sqlite3_column_text(pStmt,0);
-            const unsigned char *bBkname=sqlite3_column_text(pStmt,1);
-            const unsigned char *bBPname=sqlite3_column_text(pStmt,2);
-            const unsigned char *bBkstatus=sqlite3_column_text(pStmt,3);
-            QTableWidgetItem *bBkidItem=new QTableWidgetItem((char *)bBkid);
-            ui->tableWidget->insertRow(0);
-            ui->tableWidget->setItem(0,0,bBkidItem);
-            QTableWidgetItem *bBknameItem=new QTableWidgetItem((char *)bBkname);
-            ui->tableWidget->setItem(0,1,bBknameItem);
-            QTableWidgetItem *bBPnameItem=new QTableWidgetItem((char *)bBPname);
-            ui->tableWidget->setItem(0,2,bBPnameItem);
-            QTableWidgetItem *bBkstatusItem=new QTableWidgetItem((char *)bBkstatus);
-            ui->tableWidget->setItem(0,3,bBkstatusItem);
-            }
-        }
-        else{
-            QMessageBox::information(this,"警告","不存在的用户");
-        }
-        sqlite3_close(pDb);
-    }
+    ShowBook();
 }
 
 void BorrowBookDlg::on_BtnBorrow_clicked()
@@ -84,7 +55,7 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
           QString sql0="select * from T_BOOK where book_id="+bkid+";";
           bool c=query.exec(sql0);
           if(!query.next()){
-              QMessageBox::information(this,"failed","NULL");
+              QMessageBox::information(this,"警告","sql0执行失败");
               return;
           }
           QString bkname=query.value("book_name").toString();
@@ -119,6 +90,7 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
           }
       }
       }
+      ShowBook();
          /* db.commit();
          // if(!query.next()){
           //    qDebug()<< query.lastError();
@@ -151,4 +123,35 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
         }
    // }
         }*/
+}
+
+void BorrowBookDlg::ShowBook()
+{
+    for(int i=0;i<=ui->tableWidget->rowCount();i++){
+        ui->tableWidget->removeRow(i);
+    }
+    sqlite3 *pDb;
+    if(sqlite3_open("./MyLibrary.db",&pDb)==SQLITE_OK){
+        QString id=ui->Edtbkid->text();
+        QString sql="select book_id,book_name,press_name,book_status from T_BOOK where book_id="+id+";";
+        sqlite3_stmt *pStmt;
+        if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,nullptr)==SQLITE_OK){
+            while(sqlite3_step(pStmt)==SQLITE_ROW){
+            const unsigned char *bBkid=sqlite3_column_text(pStmt,0);
+            const unsigned char *bBkname=sqlite3_column_text(pStmt,1);
+            const unsigned char *bBPname=sqlite3_column_text(pStmt,2);
+            const unsigned char *bBkstatus=sqlite3_column_text(pStmt,3);
+            QTableWidgetItem *bBkidItem=new QTableWidgetItem((char *)bBkid);
+            ui->tableWidget->insertRow(0);
+            ui->tableWidget->setItem(0,0,bBkidItem);
+            QTableWidgetItem *bBknameItem=new QTableWidgetItem((char *)bBkname);
+            ui->tableWidget->setItem(0,1,bBknameItem);
+            QTableWidgetItem *bBPnameItem=new QTableWidgetItem((char *)bBPname);
+            ui->tableWidget->setItem(0,2,bBPnameItem);
+            QTableWidgetItem *bBkstatusItem=new QTableWidgetItem((char *)bBkstatus);
+            ui->tableWidget->setItem(0,3,bBkstatusItem);
+            }
+        }
+        sqlite3_close(pDb);
+    }
 }

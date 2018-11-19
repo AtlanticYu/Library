@@ -23,6 +23,8 @@ private slots:
 
     void on_BtnReturn_clicked();
 
+    void on_BtnLost_clicked();
+
 private:
     Ui::ReturnBookDlg *ui;
     QSqlQueryModel *model;

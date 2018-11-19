@@ -98,12 +98,12 @@
      <rect>
       <x>260</x>
       <y>20</y>
-      <width>91</width>
+      <width>101</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>查询记录</string>
     </property>
     <property name="icon">
      <iconset resource="mainviewbg.qrc">
@@ -111,8 +111,8 @@
     </property>
     <property name="iconSize">
      <size>
-      <width>32</width>
-      <height>32</height>
+      <width>30</width>
+      <height>30</height>
      </size>
     </property>
    </widget>
@@ -126,7 +126,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>借阅归还</string>
     </property>
     <property name="icon">
      <iconset resource="mainviewbg.qrc">
@@ -134,8 +134,31 @@
     </property>
     <property name="iconSize">
      <size>
-      <width>32</width>
-      <height>32</height>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnLost">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>20</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>丢书</string>
+    </property>
+    <property name="icon">
+     <iconset resource="mainviewbg.qrc">
+      <normaloff>:/pictures/icons/Pictures/丢单.png</normaloff>:/pictures/icons/Pictures/丢单.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
      </size>
     </property>
    </widget>
