@@ -33,9 +33,10 @@ void ModifyBookDialog::on_BtnConfirmBook_clicked()
     }
     sqlite3 *pDb;
     if(sqlite3_open("./MyLibrary.db",&pDb)!=SQLITE_OK) return;
-    QString sql = "update T_BOOK set book_name = '"+book_name+"',press_name = '"+press_name+"',press_time = '"+press_date+"' where press_id = '"+NeedModifyBookId+"';";
+    QString sql = "update T_BOOK set book_name = '"+book_name+"',press_time = '"+press_date+"' where book_id = '"+NeedModifyBookId+"';";
     char *errmsg;
-    if(sqlite3_exec(pDb,sql.toStdString().c_str(),NULL,NULL,&errmsg)==SQLITE_OK)
+    //中文要转成utf8
+    if(sqlite3_exec(pDb,sql.toUtf8().data(),NULL,NULL,&errmsg)==SQLITE_OK)
     {
         QMessageBox::information(this,"提示","修改成功");
     }

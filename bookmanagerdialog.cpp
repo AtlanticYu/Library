@@ -22,7 +22,7 @@ void bookmanagerDialog::showEvent (QShowEvent * event)
     showAllBooks();
 }
 
-
+//模糊查询
 void bookmanagerDialog::on_BtnSearch_clicked()
 {
     QString bookname = ui->EdtInputBook->text();
@@ -36,7 +36,9 @@ void bookmanagerDialog::on_BtnSearch_clicked()
     {
         QString sql = "select * from T_BOOK where book_name LIKE '%"+bookname+"%' order by book_id desc";
         sqlite3_stmt *pStmt;
-        if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,NULL) == SQLITE_OK)
+        //查询中文要转成utf8，其中第二、三个参数都需要做相应修改，不转码会查询失败
+        if(sqlite3_prepare(pDb,sql.toUtf8().data(),sql.toUtf8().length(),&pStmt,NULL) == SQLITE_OK)
+//        if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,NULL) == SQLITE_OK)
         {
             int Tcount = ui->tableWidgetBook->rowCount();
             for(int i = 0;i < Tcount;i ++ )
@@ -170,7 +172,7 @@ void bookmanagerDialog::on_BtnBookDelete_clicked()
         sqlite3_close(pDb);
     }
 }
-
+//选中后的图书修改按键事件
 void bookmanagerDialog::on_BtnBookModify_clicked()
 {
     //信号发给修改窗体的槽
@@ -188,7 +190,7 @@ void bookmanagerDialog::on_BtnBookModify_clicked()
     }
     modifyBookDlg->show();
 }
-
+//添加图书按钮点击事件
 void bookmanagerDialog::on_BtnAddBook_clicked()
 {
     if(oneBookDlg==NULL) {
@@ -198,7 +200,7 @@ void bookmanagerDialog::on_BtnAddBook_clicked()
     }
     oneBookDlg->show();
 }
-
+//添加图书窗口确定按钮激活的的槽函数
 void bookmanagerDialog::GetBook(QString book_name,QString press_id,QString press_name,QString press_time)
 {
     //判断是否为空
