@@ -57,8 +57,7 @@ void RecordDialog::on_pushButton_UserId_clicked()
     }
     else
     {
-        int curRow=ui->tableWidget->rowCount();
-        ui->tableWidget->insertRow(curRow);
+        ui->tableWidget->insertRow(0);
         QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
         QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
         QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
@@ -75,7 +74,7 @@ void RecordDialog::on_pushButton_UserId_clicked()
         ui->tableWidget->setItem(0,6,p6);
         while(query.next())
         {
-            ui->tableWidget->insertRow(curRow);
+            ui->tableWidget->insertRow(0);
             QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
             QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
             QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
@@ -136,8 +135,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
     }
     else
     {
-        int curRow=ui->tableWidget->rowCount();
-        ui->tableWidget->insertRow(curRow);
+        ui->tableWidget->insertRow(0);
         QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
         QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
         QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
@@ -154,7 +152,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
         ui->tableWidget->setItem(0,6,p6);
         while(query.next())
         {
-            ui->tableWidget->insertRow(curRow);
+            ui->tableWidget->insertRow(0);
             QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
             QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
             QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
@@ -209,8 +207,7 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
     }
     else
     {
-        int curRow=ui->tableWidget->rowCount();
-        ui->tableWidget->insertRow(curRow);
+        ui->tableWidget->insertRow(0);
         QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
         QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
         QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
@@ -227,7 +224,7 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
         ui->tableWidget->setItem(0,6,p6);
         while(query.next())
         {
-            ui->tableWidget->insertRow(curRow);
+            ui->tableWidget->insertRow(0);
             QTableWidgetItem *p0=new QTableWidgetItem(query.value(1).toString());
             QTableWidgetItem *p1=new QTableWidgetItem(query.value(2).toString());
             QTableWidgetItem *p2=new QTableWidgetItem(query.value(3).toString());
