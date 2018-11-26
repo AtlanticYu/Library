@@ -137,6 +137,7 @@ void BorrowBookDlg::ShowBook()
         sqlite3_stmt *pStmt;
         if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,nullptr)==SQLITE_OK){
             while(sqlite3_step(pStmt)==SQLITE_ROW){
+
             const unsigned char *bBkid=sqlite3_column_text(pStmt,0);
             const unsigned char *bBkname=sqlite3_column_text(pStmt,1);
             const unsigned char *bBPname=sqlite3_column_text(pStmt,2);
@@ -150,7 +151,9 @@ void BorrowBookDlg::ShowBook()
             ui->tableWidget->setItem(0,2,bBPnameItem);
             QTableWidgetItem *bBkstatusItem=new QTableWidgetItem((char *)bBkstatus);
             ui->tableWidget->setItem(0,3,bBkstatusItem);
+            return;
             }
+            QMessageBox::information(this,"警告","该书不存在");
         }
         sqlite3_close(pDb);
     }

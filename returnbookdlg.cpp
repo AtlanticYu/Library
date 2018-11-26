@@ -115,7 +115,7 @@ void ReturnBookDlg::on_BtnReturn_clicked()
     if(day>30){
        QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','还书','"+endtime+"');";
        query.exec(sql3);
-       int money=day*0.2;
+       float money=day*0.2;
        QString rmoney=QString::number(money);
        QString sql4="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time,fine_amount) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','超期罚款','"+endtime+"',"+rmoney+");";
        query.exec(sql4);
@@ -139,6 +139,7 @@ void ReturnBookDlg::on_BtnReturn_clicked()
         QMessageBox::warning(NULL, "温馨提示", "还书成功！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
     db.close();
+    on_BtnSelect_clicked();
 }
 
 void ReturnBookDlg::on_BtnLost_clicked()
@@ -187,5 +188,6 @@ void ReturnBookDlg::on_BtnLost_clicked()
     QString sql3="delete from T_BOOK where book_id="+bookid+";";
     query.exec(sql3);
     db.close();
+    on_BtnSelect_clicked();
 }
 

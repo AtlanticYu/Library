@@ -91,6 +91,8 @@ void RecordDialog::on_pushButton_UserId_clicked()
             ui->tableWidget->setItem(0,6,p6);
         }
     }
+    //QTableWidget根据内容调整列宽
+    ui->tableWidget->resizeColumnsToContents();
 
 
 }
@@ -169,7 +171,7 @@ void RecordDialog::on_pushButton_BookId_clicked()
             ui->tableWidget->setItem(0,6,p6);
         }
     }
-
+     ui->tableWidget->resizeColumnsToContents();
 
 
 }
@@ -241,6 +243,7 @@ void RecordDialog::on_pushButton_ShowAll_clicked()
             ui->tableWidget->setItem(0,6,p6);
         }
     }
+    ui->tableWidget->resizeColumnsToContents();
     db.close();
     QSqlDatabase::removeDatabase("QSQLITE");
 
