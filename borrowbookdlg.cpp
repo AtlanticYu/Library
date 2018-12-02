@@ -73,7 +73,6 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
           QString sql1="update T_USER set available_number="+num+" where user_id="+usrid+";";
           QString sql2="update T_BOOK set book_status=1 where book_id="+bkid+";";
           QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bkid+",'"+bkname+"','借书','"+str+"');";
-          //bool m=query.exec(sql2);
           sqlite3 *pDb;
           sqlite3_stmt *Ustmt;
           sqlite3_open("./MyLibrary.db",&pDb);
