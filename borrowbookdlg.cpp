@@ -73,7 +73,6 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
           QString sql1="update T_USER set available_number="+num+" where user_id="+usrid+";";
           QString sql2="update T_BOOK set book_status=1 where book_id="+bkid+";";
           QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bkid+",'"+bkname+"','借书','"+str+"');";
-          //bool m=query.exec(sql2);
           sqlite3 *pDb;
           sqlite3_stmt *Ustmt;
           sqlite3_open("./MyLibrary.db",&pDb);
@@ -91,38 +90,6 @@ void BorrowBookDlg::on_BtnBorrow_clicked()
       }
       }
       ShowBook();
-         /* db.commit();
-         // if(!query.next()){
-          //    qDebug()<< query.lastError();
-          //    return;
-         // }
-          //query.prepare(sql3);
-         // bool b=query.exec();
-      }
-       /* sqlite3 *pDb;
-        sqlite3_stmt *Ustmt;
-        QString usrid=ui->Edtuserid->text();
-        QString sql="select * from T_USER where user_id="+usrid+";";
-        sqlite3_open("./MyLibrary.db",&pDb);
-        if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&Ustmt,nullptr)==SQLITE_OK){
-        const unsigned char *usrname=sqlite3_column_text(Ustmt,0);
-        int result=sqlite3_column_int(Ustmt,3);
-
-        if(result==0){
-            QMessageBox::warning(NULL, "warning", "Content", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-        }
-        else{
-            QString bkid=ui->Edtbkid->text();
-            sqlite3_stmt *bStmt;
-            QString sql0="select * from T_BOOK where book_id="+bkid+";";
-            sqlite3_prepare(pDb,sql0.toStdString().c_str(),-1,&bStmt,NULL);
-            const char unsigned *bkname=sqlite3_column_text(bStmt,1);
-            QDateTime time =QDateTime::currentDateTime();
-            QString sql2="update T_BOOk set book_status=1 where book_id="+bkid+";";
-            QString sql3="insert into T_RECORD values(userid,'name',bkid,'bkname','借出','time');";
-        }
-   // }
-        }*/
 }
 
 void BorrowBookDlg::ShowBook()
@@ -137,6 +104,7 @@ void BorrowBookDlg::ShowBook()
         sqlite3_stmt *pStmt;
         if(sqlite3_prepare(pDb,sql.toStdString().c_str(),sql.length(),&pStmt,nullptr)==SQLITE_OK){
             while(sqlite3_step(pStmt)==SQLITE_ROW){
+
             const unsigned char *bBkid=sqlite3_column_text(pStmt,0);
             const unsigned char *bBkname=sqlite3_column_text(pStmt,1);
             const unsigned char *bBPname=sqlite3_column_text(pStmt,2);
@@ -150,7 +118,9 @@ void BorrowBookDlg::ShowBook()
             ui->tableWidget->setItem(0,2,bBPnameItem);
             QTableWidgetItem *bBkstatusItem=new QTableWidgetItem((char *)bBkstatus);
             ui->tableWidget->setItem(0,3,bBkstatusItem);
+     //       return;
             }
+    //        QMessageBox::information(this,"警告","该书不存在");
         }
         sqlite3_close(pDb);
     }

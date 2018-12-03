@@ -62,7 +62,7 @@ void OneBookDialog::on_CbxAllPress_currentIndexChanged(const QString &arg1)
         showMatchId();
     }
 }
-
+//根据出版社名匹配其id
 void OneBookDialog::showMatchId()
 {
     sqlite3 *pDb;

@@ -82,12 +82,6 @@ void ReturnBookDlg::on_BtnReturn_clicked()
         return;
     }
     QString starttime=query.value(6).toString();
-    /*sqlite3_get_table(pDb,sql0.toStdString().c_str(),&Result,&row,&col,&errmsg);
-   // char *tim=Result[(row+1)*col-2];
-    //QString starttime;         //借书时间
-    while (*tim!=NULL) {
-        starttime+=*(tim++);
-    }*/
     QDateTime str =QDateTime::currentDateTime();
     QString endtime=str.toString("yyyy-MM-dd hh:mm:ss"); //还书时间
     QDateTime start=QDateTime::fromString(starttime,"yyyy-MM-dd hh:mm:ss");
@@ -112,33 +106,30 @@ void ReturnBookDlg::on_BtnReturn_clicked()
     }
     QString bkname=query.value(1).toString();
     QString status=query.value(5).toString();
+    int num=number+1;
+    QString nm=QString::number(num);
+    QString sql5="update T_USER set available_number="+nm+" where user_id="+usrid+";";
+    QString sql6="update T_BOOK set book_status=0 where book_id="+bookid+";";
     if(day>30){
        QString sql3="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','还书','"+endtime+"');";
        query.exec(sql3);
-       int money=day*0.2;
+       float money=day*0.2;
        QString rmoney=QString::number(money);
        QString sql4="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time,fine_amount) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','超期罚款','"+endtime+"',"+rmoney+");";
        query.exec(sql4);
-       int num=number+1;
-       QString nm=QString::number(num);
-       QString sql5="update T_USER set available_number="+nm+" where user_id="+usrid+";";
        query.exec(sql5);
-       QString sql6="update T_BOOK set book_status=0 where book_id="+bookid+";";
        query.exec(sql6);
        QMessageBox::warning(NULL, "温馨提示", "还书成功&超期处罚！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
     else{
         QString sql7="insert into T_RECORD(user_id,user_name,book_id,book_name,operation_type,operation_time) values("+usrid+",'"+usrname+"',"+bookid+",'"+bkname+"','还书','"+endtime+"');";
         query.exec(sql7);
-        int num=number+1;
-        QString nm=QString::number(num);
-        QString sql8="update T_USER set available_number="+nm+" where user_id="+usrid+";";
-        query.exec(sql8);
-        QString sql9="update T_BOOK set book_status=0 where book_id="+bookid+";";
-        query.exec(sql9);
+        query.exec(sql5);
+        query.exec(sql6);
         QMessageBox::warning(NULL, "温馨提示", "还书成功！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
     db.close();
+    on_BtnSelect_clicked();
 }
 
 void ReturnBookDlg::on_BtnLost_clicked()
@@ -164,16 +155,9 @@ void ReturnBookDlg::on_BtnLost_clicked()
         QMessageBox::information(this,"警告","sql0执行失败");
         return;
     }
-    QString starttime=query.value(6).toString();
     QString usrname=query.value(2).toString();
     QDateTime str =QDateTime::currentDateTime();
     QString endtime=str.toString("yyyy-MM-dd hh:mm:ss"); //还书时间
-    QDateTime start=QDateTime::fromString(starttime,"yyyy-MM-dd hh:mm:ss");
-    QDateTime end=QDateTime::fromString(endtime,"yyyy-MM-dd hh:mm:ss");
-    uint stime=start.toTime_t();
-    uint etime=end.toTime_t();
-    int daysec=24*60*60;
-    int day=(etime-stime)/(daysec)+((etime-stime)%(daysec)+(daysec-1))/(daysec);
     QString sql1="select * from T_BOOK where book_id="+bookid+";";
     query.exec(sql1);
     if(!query.next()){
@@ -187,5 +171,6 @@ void ReturnBookDlg::on_BtnLost_clicked()
     QString sql3="delete from T_BOOK where book_id="+bookid+";";
     query.exec(sql3);
     db.close();
+    on_BtnSelect_clicked();
 }
 
