@@ -71,7 +71,6 @@ void UserDialog::on_pushButton_AddUser_clicked()
            db = QSqlDatabase::addDatabase("QSQLITE", "myconn");//加载数据库驱动，并命名连接名称为myconn
        }
        db.setDatabaseName("./MyLibrary.db");
-
        //连接失败
        if (!db.open())
        {

@@ -1,2 +1,33 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>bookmanagerdialog.cpp</file>
+        <file>bookmanagerdialog.h</file>
+        <file>borrowbookdlg.cpp</file>
+        <file>borrowbookdlg.h</file>
+        <file>dbManager.cpp</file>
+        <file>dbManager.h</file>
+        <file>main.cpp</file>
+        <file>mainwindow.cpp</file>
+        <file>mainwindow.h</file>
+        <file>modifybookdialog.cpp</file>
+        <file>modifybookdialog.h</file>
+        <file>modifypressdialog.cpp</file>
+        <file>modifypressdialog.h</file>
+        <file>onebookdialog.cpp</file>
+        <file>onebookdialog.h</file>
+        <file>onepressdialog.cpp</file>
+        <file>onepressdialog.h</file>
+        <file>pressmanagerdialog.cpp</file>
+        <file>pressmanagerdialog.h</file>
+        <file>printviewdialog.cpp</file>
+        <file>printviewdialog.h</file>
+        <file>recorddialog.cpp</file>
+        <file>recorddialog.h</file>
+        <file>returnbookdlg.cpp</file>
+        <file>returnbookdlg.h</file>
+        <file>userdialog.cpp</file>
+        <file>userdialog.h</file>
+        <file>userupdatedialog.cpp</file>
+        <file>userupdatedialog.h</file>
+    </qresource>
+</RCC>

@@ -91,8 +91,8 @@ void RecordDialog::on_pushButton_UserId_clicked()
             ui->tableWidget->setItem(0,6,p6);
         }
     }
-
-
+    db.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
 }
 
 void RecordDialog::on_pushButton_BookId_clicked()
@@ -169,7 +169,8 @@ void RecordDialog::on_pushButton_BookId_clicked()
             ui->tableWidget->setItem(0,6,p6);
         }
     }
-
+    db.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
 
 
 }

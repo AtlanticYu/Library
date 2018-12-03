@@ -81,3 +81,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     mainviewbg.qrc
 LIBS += -lsqlite3
+
+DISTFILES += \
+    Pictures/update.png
