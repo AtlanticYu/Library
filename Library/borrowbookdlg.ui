@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BorrowBookDlg</class>
+ <widget class="QDialog" name="BorrowBookDlg">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>404</width>
+    <height>340</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>用户借阅</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(221,240,237);</string>
+  </property>
+  <widget class="QLineEdit" name="Edtbkid">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>20</y>
+     <width>113</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btnsearch">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>20</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>图书查询</string>
+   </property>
+   <property name="icon">
+    <iconset resource="mainviewbg.qrc">
+     <normaloff>:/pictures/icons/Pictures/查询业务.png</normaloff>:/pictures/icons/Pictures/查询业务.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>80</y>
+     <width>411</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>书号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>书名</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>出版社</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>租借状态</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLineEdit" name="Edtuserid">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>50</y>
+     <width>113</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string>图书号</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户ID</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BtnBorrow">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>20</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>借阅图书</string>
+   </property>
+   <property name="icon">
+    <iconset resource="mainviewbg.qrc">
+     <normaloff>:/pictures/icons/Pictures/借阅.png</normaloff>:/pictures/icons/Pictures/借阅.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="mainviewbg.qrc"/>
+ </resources>
+ <connections/>
+</ui>

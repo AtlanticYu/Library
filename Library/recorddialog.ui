@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RecordDialog</class>
+ <widget class="QDialog" name="RecordDialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>688</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>操作记录</string>
+  </property>
+  <widget class="QFrame" name="frame_table">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>120</y>
+     <width>801</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>811</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>用户ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>用户名称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>书本ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>书本名称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>操作类型</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>操作时间 </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>罚款金额</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-1</y>
+     <width>1201</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(199, 230, 236); </string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>30</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>39</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>操作记录管理</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_widget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>120</y>
+     <width>401</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(221, 240, 237);  </string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pushButton_UserId">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>30</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查询用户记录</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_UserId">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>40</y>
+      <width>113</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_BookId">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>120</y>
+      <width>113</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ShowAll">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>270</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>   显示所有</string>
+    </property>
+    <property name="icon">
+     <iconset resource="mainviewbg.qrc">
+      <normaloff>:/pictures/icons/Pictures/显示所有记录.png</normaloff>:/pictures/icons/Pictures/显示所有记录.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>42</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_BookId">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>110</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查询图书记录</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>输入用户ID:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>输入书本ID:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_screen">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>270</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>   筛选记录</string>
+    </property>
+    <property name="icon">
+     <iconset resource="mainviewbg.qrc">
+      <normaloff>:/pictures/icons/Pictures/筛选.png</normaloff>:/pictures/icons/Pictures/筛选.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_borrow">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>92</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>借书</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_return">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>200</y>
+      <width>92</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>还书</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_fine">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>200</y>
+      <width>92</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>超期罚款</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ShowPdf">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>500</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>     打印预览</string>
+    </property>
+    <property name="icon">
+     <iconset resource="mainviewbg.qrc">
+      <normaloff>:/pictures/icons/Pictures/打印预览.png</normaloff>:/pictures/icons/Pictures/打印预览.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_lost">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>200</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>丢书</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="mainviewbg.qrc"/>
+ </resources>
+ <connections/>
+</ui>
